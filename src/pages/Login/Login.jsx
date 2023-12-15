@@ -5,29 +5,29 @@ import { loginCall } from "../../services/apiCalls";
 
 export const Login = () => {
 
-    // defino mis variables en el estado del hook
+    // defino mis datos, un objeto, en el estado del hook
     const [loginBody, setLoginBody] = useState({
         email: "",
         password: "",
     });
 
-    // las manejo para llevarla a los campos de mi input
-    const functionHandler = (e) => {
+    // manejo el paquete para llevar cada propiedad a los campos de mi componente input
+    const loginBodyHandler = (e) => {
         setLoginBody((prevState) => ({
-          ...prevState,
-          [e.target.name]: e.target.value
+            ...prevState,
+            [e.target.name]: e.target.value
         }));
-      };
-    
+    };
+
     // llamo a la api con el objeto loginBody y recupero los datos de la llamada
-    const logMe = () => {
+    const loginButton = () => {
         console.log(loginBody);
         loginCall(loginBody)
             .then(result => {
                 console.log(result.data.token);
             })
             .catch(error => {
-                console.log(result.data);
+                console.log(error.message);
             });
     }
 
@@ -39,7 +39,7 @@ export const Login = () => {
                     type={"email"}
                     name={"email"}
                     placeholder={"Enter email"}
-                    functionProp={functionHandler}
+                    functionProp={loginBodyHandler}
 
                 />
                 <div className='errorMsg'>{''}</div>
@@ -48,10 +48,10 @@ export const Login = () => {
                     type={"password"}
                     name={"password"}
                     placeholder={"Enter password"}
-                    functionProp={functionHandler}
+                    functionProp={loginBodyHandler}
 
                 />
-                <div className='buttonSubmitLog' onClick={logMe}>Login</div>
+                <div className='buttonSubmitLog' onClick={loginButton}>Login</div>
             </div>
         </div>
     );
