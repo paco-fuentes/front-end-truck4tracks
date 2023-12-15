@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "./Login.css";
 import { FieldInput } from "../../common/FieldInput/FieldInput";
 import { loginCall } from "../../services/apiCalls";
+import { useDispatch } from "react-redux";
+import { login } from "../userTokenSlice";
 
 export const Login = () => {
+    // guardo la accion de dispatch en una const
+    const dispatch = useDispatch();
 
     // defino mis datos, un objeto, en el estado del hook
     const [loginBody, setLoginBody] = useState({
@@ -24,7 +28,10 @@ export const Login = () => {
         console.log(loginBody);
         loginCall(loginBody)
             .then(result => {
-                console.log(result.data.token);
+                // guardo el token actual y lo mando a credentials en el userTokenSlice
+                const currentToken = result.data.token;
+                console.log(currentToken);
+                dispatch(login({ credentials: currentToken }));
             })
             .catch(error => {
                 console.log(error.message);
@@ -43,7 +50,7 @@ export const Login = () => {
 
                 />
                 <div className='errorMsg'>{''}</div>
-                <FieldInput className="logPanel inputDesign"
+                <FieldInput
                     design={''}
                     type={"password"}
                     name={"password"}
@@ -51,7 +58,7 @@ export const Login = () => {
                     functionProp={loginBodyHandler}
 
                 />
-                <div className='buttonSubmitLog' onClick={loginButton}>Login</div>
+                <div onClick={loginButton}>Login</div>
             </div>
         </div>
     );
