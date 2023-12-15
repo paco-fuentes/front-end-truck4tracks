@@ -1,22 +1,20 @@
 import axios from "axios";
 
-const HOST_URL = `http://localhost:4000/api`
+const HOST_URL = `http://localhost:4000/api`;
 
-// user
+// user API calls
 export const registerCall = async (body) => {
-  return await axios.post(`http://localhost:4000/api/user/register`, body);
+  return await axios.post(`${HOST_URL}/user/register`, body);
 };
 
 export const loginCall = async (body) => {
-  return await axios.post(`http://localhost:4000/api/user/login`, body);
+  return await axios.post(`${HOST_URL}/user/login`, body);
 };
 
 export const profileCall = async (token) => {
-  return await axios.get(`http://localhost:4000/api/user/profile`, {
+  return await axios.get(`${HOST_URL}/user/profile`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 };
-
-// process.env.HOST_URL
