@@ -8,7 +8,7 @@ import { persistReducer } from "redux-persist";
 import { thunk } from "redux-thunk";
 
 const reducers = combineReducers({
-  userToken: userTokenSlice,
+  user: userTokenSlice,
 });
 
 const persistConfig = {

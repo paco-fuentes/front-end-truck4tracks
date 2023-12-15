@@ -25,7 +25,7 @@ export const Login = () => {
 
     // llamo a la api con el objeto loginBody y recupero los datos de la llamada
     const loginButton = () => {
-        console.log(loginBody);
+        // console.log(loginBody);
         loginCall(loginBody)
             .then(result => {
                 // guardo el token actual y lo mando a credentials en el userTokenSlice
