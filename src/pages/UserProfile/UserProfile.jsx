@@ -8,7 +8,7 @@ import { userData } from '../userTokenSlice';
 export const UserProfile = () => {
     const userCredentialsRedux = useSelector(userData);
     const token = userCredentialsRedux.credentials;
-
+    
     const [userProfileData, setUserProfileData] = useState(null);
 
     useEffect(() => {
@@ -52,8 +52,8 @@ export const UserProfile = () => {
             <div>username: {profile.username}</div>
             <div>email: {profile.email}</div>
             <div>activity: {profile.activity.activity}</div>
-            {/* <div>Imagen: <img src={`http://localhost:4000/${profile.img_url}`} alt="Usuario" /></div> */}
-            <div>Imagen: <img src={`https://unavatar.io/${profile.username}`} alt="Usuario" widht="10rem" /></div>
+            {/* <div>Imagen: <img src={`http://localhost:4000/${profile.img_url}`} alt="user image" /></div> */}
+            <div>Imagen: <img src={`https://unavatar.io/${profile.username}`} widht="10rem" /></div>
         </>
     );
 };

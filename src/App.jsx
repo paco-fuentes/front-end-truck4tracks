@@ -1,15 +1,13 @@
 import './App.css';
-import { Login } from './pages/Login/Login';
-import { Register } from './pages/Register/Register';
-import { UserProfile } from './pages/UserProfile/UserProfile';
+import { Header } from './common/Header/Header';
+import { Body } from './pages/Body/Body';
 
 function App() {
 
   return (
     <>
-      <Register />
-      <Login />
-      <UserProfile />
+      <Header />
+      <Body />
     </>
   )
 }
