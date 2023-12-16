@@ -1,6 +1,6 @@
 <!-- # truck4tracks API -->
 
-<img src="./src/assets/img/prelogo-1.png" align= "center"/>
+<img src="./public/img_readme/prelogo-1.png" align= "center"/>
 
 ---
 

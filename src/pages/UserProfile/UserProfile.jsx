@@ -44,16 +44,14 @@ export const UserProfile = () => {
         }
     }, [userProfileData]);
 
-    // const API_HOST = `http://localhost:4000`;
-
     return (
         <>
             <p>User Profile:</p>
             <div>username: {profile.username}</div>
             <div>email: {profile.email}</div>
             <div>activity: {profile.activity.activity}</div>
-            {/* <div>Imagen: <img src={`http://localhost:4000/${profile.img_url}`} alt="user image" /></div> */}
-            <div>Imagen: <img src={`https://unavatar.io/${profile.username}`} widht="10rem" /></div>
+            <div>Imagen default: <img src={profile.img_url} alt="user image" width="200"/></div>
+            <div>Imagen username: <img src={`https://unavatar.io/${profile.username}`} width="200" /></div>
         </>
     );
 };
