@@ -32,7 +32,8 @@ export const UserProfile = () => {
     })
 
     useEffect(() => {
-        if (userProfileData) {
+        // manejar si hay o no hay datos
+        if (userProfileData && userProfileData.data) {
             const { username, email, activity, img_url } = userProfileData.data;
             setProfile({
                 username: username || '',
@@ -43,13 +44,16 @@ export const UserProfile = () => {
         }
     }, [userProfileData]);
 
+    // const API_HOST = `http://localhost:4000`;
+
     return (
         <>
             <p>User Profile:</p>
             <div>username: {profile.username}</div>
             <div>email: {profile.email}</div>
             <div>activity: {profile.activity.activity}</div>
-            <div>Imagen: <img src={profile.img_url} /></div>
+            {/* <div>Imagen: <img src={`http://localhost:4000/${profile.img_url}`} alt="Usuario" /></div> */}
+            <div>Imagen: <img src={`https://unavatar.io/${profile.username}`} alt="Usuario" widht="10rem" /></div>
         </>
     );
 };
