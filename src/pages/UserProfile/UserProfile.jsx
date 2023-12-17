@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { profileCall } from '../../services/apiCalls';
 import './UserProfile.css'
-
 import { useSelector } from 'react-redux';
 import { userData } from '../userTokenSlice';
 
 export const UserProfile = () => {
     const userCredentialsRedux = useSelector(userData);
     const token = userCredentialsRedux.credentials;
-    
+
     const [userProfileData, setUserProfileData] = useState(null);
 
     useEffect(() => {
@@ -50,7 +49,7 @@ export const UserProfile = () => {
             <div>username: {profile.username}</div>
             <div>email: {profile.email}</div>
             <div>activity: {profile.activity.activity}</div>
-            <div>Imagen default: <img src={profile.img_url} alt="user image" width="200"/></div>
+            <div>Imagen default: <img src={profile.img_url} alt="user image" width="200" /></div>
             <div>Imagen username: <img src={`https://unavatar.io/${profile.username}`} width="200" /></div>
         </>
     );

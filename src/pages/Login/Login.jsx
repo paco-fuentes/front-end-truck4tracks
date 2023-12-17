@@ -47,7 +47,6 @@ export const Login = () => {
                     name={"email"}
                     placeholder={"Enter email"}
                     functionProp={loginBodyHandler}
-
                 />
                 <div className='errorMsg'>{''}</div>
                 <FieldInput
@@ -56,7 +55,6 @@ export const Login = () => {
                     name={"password"}
                     placeholder={"Enter password"}
                     functionProp={loginBodyHandler}
-
                 />
                 <div onClick={loginButton}>Login</div>
             </div>
