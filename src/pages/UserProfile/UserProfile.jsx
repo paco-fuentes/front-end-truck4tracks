@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { profileCall } from '../../services/apiCalls';
-import './UserProfile.css'
 import { useSelector } from 'react-redux';
 import { userData } from '../userTokenSlice';
+import './UserProfile.css'
 
 export const UserProfile = () => {
     const userCredentialsRedux = useSelector(userData);

@@ -1,4 +1,3 @@
-import React from 'react';
 import './Header.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, userData } from '../../pages/userTokenSlice';

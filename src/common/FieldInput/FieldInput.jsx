@@ -1,5 +1,3 @@
-
-import React from 'react'
 import './FieldInput.css'
 
 export const FieldInput = ({ disabled, design, type, name, placeholder, value, functionProp }) => {
