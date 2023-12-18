@@ -15,8 +15,9 @@ export const BandPage = () => {
                 const response = await getBandByParams(id);
                 const bandPageData = response.data.data.band;
                 // por ahora solo 1 multitrack
-                const multitrackData = response.data.data.multitracks[0].multitrack;
-                const trackData = response.data.data.multitracks[0].tracks;
+                const multitrackData = response.data.data.multitracks?.[0]?.multitrack;
+                // falta map
+                const trackData = response.data.data.multitracks?.[0]?.tracks;
                 setBandPage(bandPageData);
                 setMultitrack(multitrackData);
                 setTrack(trackData);
@@ -27,7 +28,7 @@ export const BandPage = () => {
         getBandPage();
     }, [id]);
 
-    console.log( track);
+    // console.log( track);
 
     return (
         <div>
@@ -35,7 +36,7 @@ export const BandPage = () => {
                 <>
                     <div>Image: <img src={bandPage.img_url} width="100" alt="Band Image" /></div>
                     <p><strong>Band name: {bandPage.band_name}</strong></p>
-
+                    {multitrack && (
                     <div>Multitrack:
                         <p><strong>Multitrack name: {multitrack.project_title}</strong></p>
                         <div>Image: <img src={multitrack.img_url} width="100" alt="Band Image" /></div>
@@ -47,9 +48,15 @@ export const BandPage = () => {
                                     <source src={track[0].track_url} type="audio/ogg" />
                                     Tu navegador no soporta la etiqueta de audio.
                                 </audio>
+                                <div>{track[1].track_name}</div>
+                                <audio controls>
+                                    <source src={track[1].track_url} type="audio/ogg" />
+                                    Tu navegador no soporta la etiqueta de audio.
+                                </audio>
                             </div>
                         </div>
                     </div>
+                    )}
                 </>
             )}
         </div>
