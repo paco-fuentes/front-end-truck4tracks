@@ -8,6 +8,10 @@ export const getAllBands = async () => {
   return await axios.get(`${HOST_URL}/band/all`);
 };
 
+export const getBandByParams = async (id) => {
+  return await axios.get(`${HOST_URL}/band/${id}`);
+};
+
 // user API calls
 export const registerCall = async (body) => {
   return await axios.post(`${HOST_URL}/user/register`, body);
