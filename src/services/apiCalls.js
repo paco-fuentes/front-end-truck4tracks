@@ -28,3 +28,16 @@ export const profileCall = async (token) => {
     },
   });
 };
+
+// messages
+export const getAllBandMessages = async (id) => {
+  return await axios.get(`${HOST_URL}/messages/band/${id}`);
+};
+
+export const postMessage = async (id, body, token) => {
+  return await axios.get(`${HOST_URL}/messages/band/${id}`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
