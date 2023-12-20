@@ -35,7 +35,7 @@ export const getAllBandMessages = async (id) => {
 };
 
 export const postMessage = async (id, body, token) => {
-  return await axios.get(`${HOST_URL}/messages/band/${id}`, body, {
+  return await axios.post(`${HOST_URL}/messages/band/${id}`, body, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
