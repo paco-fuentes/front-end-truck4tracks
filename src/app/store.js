@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userTokenSlice from "../pages/userTokenSlice";
+import bandMessagesSlice from "../pages/bandMessagesSlice";
 
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
@@ -9,6 +10,7 @@ import { thunk } from "redux-thunk";
 
 const reducers = combineReducers({
   user: userTokenSlice,
+  bandMessages: bandMessagesSlice,
 });
 
 const persistConfig = {

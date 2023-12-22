@@ -4,12 +4,16 @@ import { getAllBandMessages, getBandByParams, postMessage } from "../../services
 import { useParams } from "react-router-dom";
 import { Multitrack } from "../../common/Multitrack/Multitrack";
 import { BandChat } from "../../common/BandChat/BandChat";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../userTokenSlice";
+import { addMessage, setMessages } from "../bandMessagesSlice";
 
 export const BandPage = () => {
+    const dispatch = useDispatch();
     const userCredentialsRedux = useSelector(userData);
     const token = userCredentialsRedux.credentials;
+    const bandMessages = useSelector((state) => state.bandMessages);
+
     const [bandPage, setBandPage] = useState(null);
     const [multitrack, setMultitrack] = useState(null);
     const [tracks, setTracks] = useState(null);
@@ -43,14 +47,17 @@ export const BandPage = () => {
             }
         };
         getMessages();
-    }, [id]);
+    }, [dispatch, id]);
+
+    console.log('messages: ', messages);
 
     const sendNewMessage = async (message) => {
         try {
             const body = { message };
-            console.log('body--->' + body);
+            console.log('body--->' + body.message);
 
             const response = await postMessage(id, body, token);
+            dispatch(addMessage(response.data.message));
         } catch (error) {
             console.error('Error send message --> ', error);
         }
