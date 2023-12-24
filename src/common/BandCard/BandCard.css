@@ -1,0 +1,48 @@
+.bandCard {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: 2em;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--blue-col);
+  border-color: var(--white-col);
+  color: white;
+  border-width: 0.2;
+  border-style: solid;
+  width: 20em;
+  height: 20em;
+  text-align: center;
+  box-shadow: var(--white-col) 0.3rem 0.5rem 0rem 0.03rem;
+  transition: transform 150ms;
+}
+
+.bandCard:hover {
+  transform: scale(1.05);
+}
+
+.imgBandCard {
+  border-width: 0.2;
+  border-style: solid;
+  border-radius: 50%;
+}
+
+.buttonSeeBand {
+  height: 2.5em;
+  width: 8em;
+  border-style: hidden;
+  border-radius: 0.3em;
+  background-color: var(--calid-dark-col);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 150ms;
+}
+
+.buttonSeeBand:hover {
+  transition: 150ms;
+  color: black;
+  background-color: var(--white-col);
+  cursor: pointer;
+}

@@ -1,0 +1,37 @@
+.homeDesign {
+  height: 86vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font-weight: lighter;
+  background: repeating-linear-gradient(
+    to right,
+    var(--green-col),
+    var(--green-col) 0.5em,
+    var(--white-col) 0.5em,
+    var(--white-col) 1.3em
+  );
+}
+
+.imgHome {
+  height: 50vh;
+  padding: 0;
+  margin: 0;
+  border-radius: 1em;
+  border-style: solid;
+  border-radius: 1em;
+  border-width: 0.5em;
+  border-color: var(--pink-col);
+  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
+  transition: 150ms;
+}
+
+.imgHome:hover {
+  height: 51vh;
+  box-shadow: var(--calid-dark-col) 1.8em 2.1em 0em -0.5em;
+  transition: 150ms;
+}

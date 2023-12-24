@@ -1,0 +1,20 @@
+.loginDesign {
+  height: 86vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  /* flex-direction: column; */
+  /* flex-wrap: wrap; */
+
+  background: repeating-linear-gradient(
+    to right,
+    var(--blue-col),
+    var(--blue-col) 0.5em,
+    var(--white-col) 0.5em,
+    var(--white-col) 1.3em
+  );
+}

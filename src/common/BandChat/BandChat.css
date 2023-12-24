@@ -1,0 +1,66 @@
+.chatCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border: 0.2em solid var(--pink-col);
+  border-radius: 0.3em;
+  font-weight: lighter;
+  width: 80vw;
+  height: 20em;
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  max-height: 17em;
+  width: 80vw;
+  overflow-y: auto;
+  scroll-margin-bottom: 0;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  margin: 0.5em;
+}
+
+.message img {
+  width: 50px;
+  margin-right: 0.5em;
+  border-radius: 50%;
+}
+
+.message .username {
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.userMessage {
+  display: flex;
+  flex-direction: column;
+}
+
+.messageInput {
+  width: 68vw;
+  height: 3em;
+  border-radius: 1em;
+  margin-right: 0.5em;
+}
+
+.buttonInput {
+  margin-bottom: 1em;
+  margin-top: 1.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.buttonInput button {
+  text-align: center;
+  width: 10vw;
+  background-color: white;
+  border-radius: 1em;
+  border-width: 0.1;
+  font-weight: lighter;
+}

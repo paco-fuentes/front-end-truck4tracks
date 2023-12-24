@@ -17,7 +17,7 @@ export const Bands = () => {
     }, [bands]);
 
     return (
-        <div>
+        <div className="bandsDesign">
             <div>
                 {bands.length > 0 ? (
                     bands.map((band) => (

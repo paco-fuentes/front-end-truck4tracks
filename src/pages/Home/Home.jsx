@@ -5,7 +5,9 @@ export const Home = () => {
     return (
 
         <>
-            Home
+            <div className="homeDesign">
+                    <img src="/public/img_home/home-1.png" alt="" className="imgHome" />
+            </div>
         </>
     );
 };

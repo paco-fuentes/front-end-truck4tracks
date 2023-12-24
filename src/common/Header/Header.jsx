@@ -5,37 +5,51 @@ import { NavButton } from '../NavButton/NavButton';
 import { jwtDecode } from 'jwt-decode';
 
 export const Header = () => {
-    const dispatch = useDispatch();
-    const userCredentialsRedux = useSelector(userData);
-    const token = userCredentialsRedux.credentials;
-    let currentRole;
+  const dispatch = useDispatch();
+  const userCredentialsRedux = useSelector(userData);
+  const token = userCredentialsRedux.credentials;
+  let currentRole;
 
-    if ((typeof token) !== "object") {
-        const decToken = token ? jwtDecode(token) : null;
-        // console.log(decToken?.role);
-        // ? ---> cuando esté disponible el .role
-        currentRole = decToken?.role;
-    }
-    // console.log('user role actual ---> ' + currentRole);
+  if ((typeof token) !== "object") {
+    const decToken = token ? jwtDecode(token) : null;
+    // console.log(decToken?.role);
+    // ? ---> cuando esté disponible el .role
+    currentRole = decToken?.role;
+  }
+  // console.log('user role actual ---> ' + currentRole);
 
-    const logOutMe = () => {
-        dispatch(logout({ credentials: "" }))
-    }
+  const logOutMe = () => {
+    dispatch(logout({ credentials: "" }))
+  }
 
-    return (
-        <div className="headerDesign txtHead">
-            <NavButton path={"/"} title={"Home"} />
-            <NavButton path={"/allbands"} title={"Bands"} />
-            <>
-                <NavButton path={"/login"} title={"Login"} />
-                <NavButton path={"/register"} title={"Regístrate"} />
-            </>
-            <>
-                <NavButton path={"/profile"} title={"Profile"} />
-                <div onClick={logOutMe}>
-                    <NavButton path={"/"} title={"Log Out"} />
-                </div>
-            </>
-        </div>
-    );
+  return (
+    <div className="headerDesign txtHead">
+      <div className="buttonContainerHome">
+        <NavButton path={"/"} title={"Home"} design={"buttonHome"} />
+      </div>
+      <div className="buttonContainerAllBands">
+        <NavButton path={"/allbands"} title={"Bands"} design={"buttonAllBands"} />
+      </div>
+      {!currentRole ? (
+        <>
+          <div className="buttonContainerLogin">
+            <NavButton path={"/login"} title={"Login"} design={"buttonLogin"} />
+          </div>
+          <div className="buttonContainerReg">
+            <NavButton path={"/register"} title={"Register"} design={"buttonReg"} />
+          </div>
+        </>
+      ) : (currentRole === 1 && (
+        <>
+          <div className="buttonContainerProfile">
+            <NavButton path={"/profile"} title={"Profile"} design={"buttonProfile"} />
+          </div>
+          <div className="buttonContainerLogin" onClick={logOutMe}>
+            <NavButton path={"/"} title={"Log Out"} design={"buttonLogin"} />
+          </div>
+        </>
+      ))}
+    </div>
+  );
+
 };

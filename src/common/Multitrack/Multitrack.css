@@ -1,0 +1,52 @@
+.multitrackCard {
+  display: flex;
+  /* margin: 2em; */
+  flex-direction: column;
+  background-color: var(--yellow-col);
+  border-color: rgb(0, 0, 0);
+  border-width: 0.2;
+  border-style: solid;
+  border-radius: 0.7em;
+  width: 40vw;
+  height: fit-content;
+  font-weight: lighter;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
+}
+
+.multiInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: var(--yellow-col);
+}
+
+.multiInfo img {
+  border-radius: 10%;
+  width: 20%;
+}
+
+.playerDesign {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0.05em;
+  width: 100%;
+  height: 4em;
+  border-style: solid;
+}
+
+.imgTrackMulti {
+  flex-grow: 1;
+  text-align: left;
+  border-radius: 50%;
+}
+
+.trackTitle {
+  flex-grow: 3;
+  text-align: left;
+}

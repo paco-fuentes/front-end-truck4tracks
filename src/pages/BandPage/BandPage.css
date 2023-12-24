@@ -1,0 +1,67 @@
+.bandPageDesign {
+  height: 86vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  background: repeating-linear-gradient(
+    to right,
+    var(--pink-col),
+    var(--pink-col) 0.5em,
+    var(--white-col) 0.5em,
+    var(--white-col) 1.3em
+  );
+}
+
+.bandPageContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bandPageCompCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80vw;
+  margin-bottom: 2em;
+  /* background-color: var(--yellow-col); */
+}
+
+.bandInfoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--pink-col);
+  width: fit-content;
+  height: fit-content;
+  text-align: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.2;
+  border-radius: 0.7em;
+  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
+}
+
+.bandInfoContainer img {
+  width: 15vw;
+  border-radius: 1em;
+  margin-top: 2em;
+}
+
+.chatCont {
+  border-radius: 0.7em;
+  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}

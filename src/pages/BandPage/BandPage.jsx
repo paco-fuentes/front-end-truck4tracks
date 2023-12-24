@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import "./BandPage.css";
+import React, { useEffect, useState } from "react";
 import { getAllBandMessages, getBandByParams, postMessage } from "../../services/apiCalls";
 import { useParams } from "react-router-dom";
 import { Multitrack } from "../../common/Multitrack/Multitrack";
@@ -12,7 +12,7 @@ export const BandPage = () => {
     const dispatch = useDispatch();
     const userCredentialsRedux = useSelector(userData);
     const token = userCredentialsRedux.credentials;
-    const bandMessages = useSelector((state) => state.bandMessages);
+    // const bandMessages = useSelector((state) => state.bandMessages);
 
     const [bandPage, setBandPage] = useState(null);
     const [multitrack, setMultitrack] = useState(null);
@@ -64,28 +64,41 @@ export const BandPage = () => {
     };
 
     return (
-        <div>
-            {bandPage && (
-                <>
-                    <div>Image: <img src={bandPage.img_url} width="100" alt="Band Image" /></div>
-                    <p><strong>Band name: {bandPage.band_name}</strong></p>
-                    <p>About: {bandPage.about}</p>
-                    {multitrack && (
-                        <Multitrack
-                            title={multitrack.project_title}
-                            img={multitrack.img_url}
-                            tracks={tracks}
-                        />
-                    )}
-                    {messages && (
-                        <BandChat
-                            messages={messages}
-                            placeholder={'Escribe a la banda...'}
-                            onSendMessage={sendNewMessage}
-                        />
-                    )}
-                </>
-            )}
+        <div className="bandPageDesign">
+            <div className="bandPageContainer">
+                {bandPage && (
+                    <>
+                        <div className="bandPageCompCont">
+                            <div className="bandInfoContainer">
+                                <div><img src={bandPage.img_url} alt="Band Image" /></div>
+                                <div className="textBox">
+                                    <div>{bandPage.band_name}</div>
+                                    <div>About: </div>
+                                    <div>{bandPage.about}</div>
+                                </div>
+                            </div>
+                            <div>
+                                {multitrack && (
+                                    <Multitrack
+                                        title={multitrack.project_title}
+                                        img={multitrack.img_url}
+                                        tracks={tracks}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                        <div className="chatCont">
+                            {messages && (
+                                <BandChat
+                                    placeholder={'Escribe a la banda...'}
+                                    messages={messages}
+                                    onSendMessage={sendNewMessage}
+                                />
+                            )}
+                        </div>
+                    </>
+                )}
+            </div>
         </div>
     );
 };

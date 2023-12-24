@@ -1,13 +1,141 @@
 .headerDesign {
-  height: 10vh;
+  height: 14vh;
   width: 100vw;
-  padding: 0;
-  margin: 0;
-  background-color: rgb(0, 0, 0);
+  background-color: var(--calid-dark-col);
+  color: rgb(255, 255, 255);
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  color: white;
+  font-size: 1.5em;
+  font-weight: lighter;
+  z-index: 2;
+}
+
+.headerDesign:hover {
+  /* font-weight: 600; */
+}
+
+.buttonContainerHome {
+  margin: 0.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 7vh;
+  width: 15vw;
+  
+  box-shadow: 0.2rem 0.3rem 0rem 0.03rem;
+  background-color: var(--green-col);
+}
+
+.buttonContainerHome:hover {
+  box-shadow: 0.3rem 0.5rem 0rem 0.03rem;
+  transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.buttonHome:hover {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 200;
+  font-size: 1.5em;
+  /* transform: scale(1.05); */
+  cursor: pointer;
+}
+
+.buttonContainerAllBands {
+  margin: 0.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 7vh;
+  width: 15vw;
+  
+  box-shadow: 0.2rem 0.3rem 0rem 0.03rem;
+  background-color: var(--pink-col);
+}
+
+.buttonContainerAllBands:hover {
+  box-shadow: 0.3rem 0.5rem 0rem 0.03rem;
+  transform: scale(1.05);
+}
+
+.buttonAllBands:hover {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.buttonContainerLogin {
+  margin: 0.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 7vh;
+  width: 15vw;
+  
+  box-shadow: 0.2rem 0.3rem 0rem 0.03rem;
+  background-color: var(--blue-col);
+}
+
+.buttonContainerLogin:hover {
+  box-shadow: 0.3rem 0.5rem 0rem 0.03rem;
+  transform: scale(1.05);
+}
+
+.buttonLogin:hover {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.buttonContainerProfile {
+  margin: 0.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 7vh;
+  width: 15vw;
+  
+  box-shadow: 0.2rem 0.3rem 0rem 0.03rem;
+  background-color: rgb(108, 250, 98);
+}
+
+.buttonProfile:hover {
+  font-family: fantasy;
+  font-weight: 200;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.buttonContainerProfile:hover {
+  box-shadow: 0.3rem 0.5rem 0rem 0.03rem;
+  transform: scale(1.05);
+}
+
+.buttonContainerReg {
+  margin: 0.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 7vh;
+  width: 15vw;
+  
+  box-shadow: 0.2rem 0.3rem 0rem 0.03rem;
+  background-color: var(--pink-d-col);
+}
+
+.buttonReg:hover {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.buttonContainerReg:hover {
+  box-shadow: 0.3rem 0.5rem 0rem 0.03rem;
+  transform: scale(1.05);
 }

@@ -39,7 +39,7 @@ export const Login = () => {
     }
 
     return (
-        <div>
+        <div className="loginDesign">
             <div>
                 <FieldInput
                     design={''}

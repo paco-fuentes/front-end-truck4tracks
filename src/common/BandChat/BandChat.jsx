@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./BandChat.css"
 
 export const BandChat = ({ messages, design, placeholder, onSendMessage }) => {
     const [inputMessage, setInputMessage] = useState('');
@@ -15,21 +16,28 @@ export const BandChat = ({ messages, design, placeholder, onSendMessage }) => {
     };
 
     return (
-        <div>
-            {messages && Array.isArray(messages) && messages.map((message, id) => (
-                <div key={id}>
-                    <div><img src={message.user.img_url} width="100" alt="Band Image" /></div>
-                    <div>{message.user.username}</div>
-                    <p>{message.message}</p>
-                </div>
-            ))}
-            <input
-                className={design}
-                placeholder={placeholder}
-                value={inputMessage}
-                onChange={handleInputChange}
-            />
-            <button onClick={handleSendMessage}>Send</button>
+        <div className="chatCard">
+            <div className="messageContainer">
+                {messages && Array.isArray(messages) && messages.map((message, id) => (
+                    <div key={id} className="message">
+                        <div><img src={message.user.img_url} width="50" alt="Band Image" /></div>
+                        <div className="userMessage">
+                            <div className="username">{message.user.username}</div>
+                            <div>{message.message}</div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className="buttonInput">
+                <input
+                    className="messageInput"
+                    placeholder={placeholder}
+                    value={inputMessage}
+                    onChange={handleInputChange}
+                />
+                <button onClick={handleSendMessage}>Send</button>
+            </div>
         </div>
     );
+
 };
