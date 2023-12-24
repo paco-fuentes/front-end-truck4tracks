@@ -1,6 +1,5 @@
 .multitrackCard {
   display: flex;
-  /* margin: 2em; */
   flex-direction: column;
   background-color: var(--yellow-col);
   border-color: rgb(0, 0, 0);

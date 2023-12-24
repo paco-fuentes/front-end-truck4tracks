@@ -5,10 +5,10 @@ const bandMessagesSlice = createSlice({
   initialState: [],
   reducers: {
     setMessages: (state, action) => {
-      return action.payload; // assuming payload is an array of messages
+      return action.payload;
     },
     addMessage: (state, action) => {
-      state.push(action.payload); // assuming payload is a single message
+      state.push(action.payload);
     },
   },
 });

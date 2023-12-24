@@ -1,7 +1,7 @@
+import './Register.css'
 import { useState } from 'react';
 import { FieldInput } from '../../common/FieldInput/FieldInput';
 import { registerCall } from '../../services/apiCalls';
-import './Register.css'
 
 export const Register = () => {
     const [userBody, setUserBody] = useState({
@@ -29,31 +29,31 @@ export const Register = () => {
     }
 
     return (
-
-        <div>
-            <FieldInput
-                design={``}
-                type={"username"}
-                name={"username"}
-                placeholder={"Your username..."}
-                functionProp={userBodyHandler}
-            />
-            <FieldInput
-                design={``}
-                type={"email"}
-                name={"email"}
-                placeholder={"email@email.email"}
-                functionProp={userBodyHandler}
-            />
-            <FieldInput
-                design={``}
-                type={"password"}
-                name={"password"}
-                placeholder={"Password"}
-                functionProp={userBodyHandler}
-            />
-            <div onClick={submit}>Submit</div>
+        <div className='regDesign'>
+            <div className='regContainer '>
+                <FieldInput
+                    design={'inputReg'}
+                    type={"username"}
+                    name={"username"}
+                    placeholder={"Your username..."}
+                    functionProp={userBodyHandler}
+                />
+                <FieldInput
+                    design={'inputReg'}
+                    type={"email"}
+                    name={"email"}
+                    placeholder={"email@email.email"}
+                    functionProp={userBodyHandler}
+                />
+                <FieldInput
+                    design={'inputReg'}
+                    type={"password"}
+                    name={"password"}
+                    placeholder={"Password"}
+                    functionProp={userBodyHandler}
+                />
+                <div className="regButton" onClick={submit}>Submit</div>
+            </div>
         </div>
-
     );
 };
