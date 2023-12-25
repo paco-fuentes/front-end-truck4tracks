@@ -12,11 +12,8 @@ export const Header = () => {
 
   if ((typeof token) !== "object") {
     const decToken = token ? jwtDecode(token) : null;
-    // console.log(decToken?.role);
-    // ? ---> cuando esté disponible el .role
     currentRole = decToken?.role;
   }
-  // console.log('user role actual ---> ' + currentRole);
 
   const logOutMe = () => {
     dispatch(logout({ credentials: "" }))
@@ -51,5 +48,4 @@ export const Header = () => {
       ))}
     </div>
   );
-
 };

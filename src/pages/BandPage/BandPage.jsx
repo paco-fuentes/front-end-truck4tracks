@@ -1,6 +1,6 @@
 import "./BandPage.css";
 import React, { useEffect, useState } from "react";
-import { getAllBandMessages, getBandByParams, postMessage } from "../../services/apiCalls";
+import { checkIfBandMemberCall, getAllBandMessages, getBandByParams, getBandMembers, joinBandCall, leaveBandCall, postMessage } from "../../services/apiCalls";
 import { useParams } from "react-router-dom";
 import { Multitrack } from "../../common/Multitrack/Multitrack";
 import { BandChat } from "../../common/BandChat/BandChat";
@@ -13,6 +13,7 @@ export const BandPage = () => {
     const userCredentialsRedux = useSelector(userData);
     const token = userCredentialsRedux.credentials;
     // const bandMessages = useSelector((state) => state.bandMessages);
+    const [isBandMember, setIsBandMember] = useState();
 
     const [bandPage, setBandPage] = useState(null);
     const [multitrack, setMultitrack] = useState(null);
@@ -25,6 +26,7 @@ export const BandPage = () => {
             try {
                 const response = await getBandByParams(id);
                 const bandPageData = response.data.data.band;
+                // sólo un multitrack or banda en esta version
                 const multitrackData = response.data.data.multitracks?.[0]?.multitrack;
                 const tracksData = response.data.data.multitracks?.[0]?.tracks;
                 setBandPage(bandPageData);
@@ -49,7 +51,8 @@ export const BandPage = () => {
         getMessages();
     }, [dispatch, id]);
 
-    console.log('messages: ', messages);
+    console.log(isBandMember);
+    // console.log('messages: ', messages);
 
     const sendNewMessage = async (message) => {
         try {
@@ -62,6 +65,54 @@ export const BandPage = () => {
             console.error('Error send message --> ', error);
         }
     };
+
+    // const checkIsMember = async () => {
+    //     try {
+    //         const response = await getBandMembers(id, token);
+    //         console.log("response--->", response);
+    //         const bandMembers = response.data;
+    //         // const userIsMember = bandMembers.some(member => member.id === userCredentialsRedux.id);
+
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+
+    const joinBandButton = async () => {
+        try {
+            const body = { "band_id": id };
+            console.log(id, token);
+            const response = await joinBandCall(body, token);
+            checkNow();
+            console.log(response.data);
+        } catch (error) {
+            console.log("User can't join the band");
+        }
+    }
+
+    const leaveBandButton = async () => {
+        try {
+            const body = { "band_id": id };
+            console.log(id, token);
+            const response = await leaveBandCall(body, token);
+            console.log(response.data);
+        } catch (error) {
+            console.log("User can't join the band");
+        }
+    }
+
+    useEffect(() => {
+        const checkIsMember = async () => {
+            try {
+                const response = await checkIfBandMemberCall(id, token);
+                const bandMember = response.data.bandMember;
+                setIsBandMember(bandMember);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        checkIsMember();
+    }, [isBandMember])
 
     return (
         <div className="bandPageDesign">
@@ -86,6 +137,13 @@ export const BandPage = () => {
                                     />
                                 )}
                             </div>
+                        </div>
+                        <div>
+                            {!isBandMember ? (
+                                <div className="joinButton" onClick={joinBandButton}>Join</div>
+                            ) : (
+                                <div className="joinButton" onClick={leaveBandButton}>Leave</div>
+                            )}
                         </div>
                         <div className="chatCont">
                             {messages && (
