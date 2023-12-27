@@ -111,8 +111,6 @@ export const UserProfile = () => {
         img_url: '',
     });
 
-
-
     const createNewBand = async () => {
         try {
             const body = {

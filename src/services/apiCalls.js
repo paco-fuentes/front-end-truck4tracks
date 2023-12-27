@@ -39,6 +39,7 @@ export const updateProfileCall = async (body, token) => {
 export const getAllActivitiesCall = async () => {
   return await axios.get(`${HOST_URL}/user/allactivities`);
 };
+
 // messages
 export const getAllBandMessages = async (id) => {
   return await axios.get(`${HOST_URL}/messages/band/${id}`);
@@ -87,6 +88,15 @@ export const getBandMembers = async (id, token) => {
 
 export const checkIfBandMemberCall = async (id, token) => {
   return await axios.get(`${HOST_URL}/user/ismember/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+// admin
+export const getAllUsersCall = async (token) => {
+  return await axios.get(`${HOST_URL}/admin/allusers`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

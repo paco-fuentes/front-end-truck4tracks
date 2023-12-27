@@ -5,8 +5,80 @@
   margin: 0;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
+  /* align-items: center; */
+  /* flex-direction: column; */
+  flex-wrap: wrap;
   font-weight: lighter;
-  background: var(--white-col);
+  overflow-y: auto;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--yellow-col) 1em,
+    var(--yellow-col) 3em,
+    var(--white-col) 1em,
+    var(--white-col) 6em
+  );
+}
+
+.adminCard {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: 2em;
+  align-items: center;
+  background-color: var(--calid-dark-col);
+  border-color: var(--white-col);
+  color: white;
+  border-width: 0.3em;
+  border-radius: 0.7em;
+  border-style: solid;
+  width: 16em;
+  height: 20em;
+  text-align: center;
+  box-shadow: var(--calid-dark-col) 1em 1.1em 0em 0em;
+  transition: 150ms
+}
+
+.adminCard:hover {
+  transform: scale(1.05);
+  box-shadow: var(--calid-dark-col) 1.8em 2.1em 0em 0em;
+  transition: 150ms
+}
+
+.imgAdminCard {
+  border-width: 0.2;
+  border-style: solid;
+  border-radius: 50%;
+  margin:1em;
+}
+
+.infoUsersAdmin{
+  display: flex;
+  justify-content: space-around;
+  border-radius: 0.7em;
+  color: black;
+  padding:1em;
+  background-color: white;
+  align-items: start;
+  flex-direction: column;
+}
+
+.buttonDeleteUser {
+  height: 2.5em;
+  width: 8em;
+  border-style: hidden;
+  border-radius: 0.3em;
+  background-color: var(--calid-dark-col);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 150ms;
+  margin:1em;
+}
+
+.buttonDeleteUser:hover {
+  transition: 150ms;
+  color: black;
+  background-color: var(--white-col);
+  cursor: pointer;
 }
