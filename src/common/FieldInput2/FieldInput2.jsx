@@ -1,6 +1,6 @@
-import './FieldInput.css'
+import './FieldInput2.css'
 
-export const FieldInput = ({ disabled, design, type, name, placeholder, value, functionProp, functionBlur }) => {
+export const FieldInput2 = ({ disabled, design, type, name, placeholder, value, functionProp, functionBlur }) => {
     return (
         <input
             disabled={disabled}
@@ -8,7 +8,7 @@ export const FieldInput = ({ disabled, design, type, name, placeholder, value, f
             type={type}
             name={name}
             placeholder={placeholder}
-            value={value || ''}
+            value={value || undefined}
             onChange={(e) => functionProp(e)}
             onBlur={(e) => functionBlur(e)}
         />
