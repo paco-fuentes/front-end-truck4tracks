@@ -1,5 +1,6 @@
 .chatCard {
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
   background-color: rgb(255, 255, 255);
@@ -8,21 +9,24 @@
   font-weight: lighter;
   width: 80vw;
   height: 20em;
+  /* background-color: chartreuse; */
 }
 
 .messageContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  height: 16em;
   max-height: 17em;
   width: 80vw;
   overflow-y: auto;
-  scroll-margin-bottom: 0;
+  /* background-color: blueviolet; */
 }
 
 .message {
   display: flex;
   align-items: center;
   margin: 0.5em;
+  /* background-color: aqua; */
 }
 
 .message img {
@@ -31,14 +35,20 @@
   border-radius: 50%;
 }
 
+.userMessage {
+  display: flex;
+  flex-direction: column;
+  /* background-color:yellow; */
+}
+
 .message .username {
   font-weight: bold;
   margin-right: 0.5em;
 }
 
-.userMessage {
-  display: flex;
-  flex-direction: column;
+.txtMessage {
+  word-break: break-all;
+  /* word-wrap: break-word; */
 }
 
 .messageInput {

@@ -18,12 +18,12 @@ export const BandChat = ({ messages, design, placeholder, onSendMessage }) => {
     return (
         <div className="chatCard">
             <div className="messageContainer">
-                {messages && Array.isArray(messages) && messages.map((message, id) => (
+                {messages && Array.isArray(messages) && messages.slice().reverse().map((message, id) => (
                     <div key={id} className="message">
-                        <div><img src={message.user.img_url} width="50" alt="Band Image" /></div>
+                        <div><img src={`https://unavatar.io/${message.user.username}`} width="50" alt="user image" /></div>
                         <div className="userMessage">
                             <div className="username">{message.user.username}</div>
-                            <div>{message.message}</div>
+                            <div className="txtMessage">{message.message}</div>
                         </div>
                     </div>
                 ))}
