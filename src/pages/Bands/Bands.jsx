@@ -18,24 +18,22 @@ export const Bands = () => {
 
     return (
         <div className="bandsDesign">
-            <div>
-                {bands.length > 0 ? (
-                    bands.map((band) => (
-                        <div key={band.id}>
-                            <BandCard
-                                id={band.id}
-                                image={band.img_url}
-                                bandName={band.band_name}
-                                bandLeader={band.band_leader.username}
-                                genres={band.genre_names}
-                                hiring={band.hiring}
-                            />
-                        </div>
-                    ))
-                ) : (
-                    bands.length === 0 && <p>Loading bands...</p>
-                )}
-            </div>
+            {bands.length > 0 ? (
+                bands.map((band) => (
+                    <div key={band.id}>
+                        <BandCard
+                            id={band.id}
+                            image={band.img_url}
+                            bandName={band.band_name}
+                            bandLeader={band.band_leader.username}
+                            genres={band.genre_names}
+                            hiring={band.hiring}
+                        />
+                    </div>
+                ))
+            ) : (
+                bands.length === 0 && <p>Loading bands...</p>
+            )}
         </div>
     );
 };
