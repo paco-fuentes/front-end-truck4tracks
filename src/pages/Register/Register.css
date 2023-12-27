@@ -21,7 +21,7 @@
   width: 15em;
   background-color: var(--pink-d-col);
   display: flex;
-  justify-content: center;
+  /* justify-content: ; */
   align-items: center;
   flex-direction: column;
   border-width: 0.3em;
@@ -69,5 +69,23 @@
 
 .regButton:hover {
   transform: scale(1.07);
+  transition: 150ms;
+}
+
+.regButtonInactive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-width: 0.1em;
+  border-radius: 0.7em;
+  border-style: solid;
+  margin: 1em;
+  color: rgb(127, 127, 127);
+  border-color: rgb(127, 127, 127);
+  text-align: center;
+  height: 3em;
+  width: 5em;
+  cursor: pointer;
   transition: 150ms;
 }

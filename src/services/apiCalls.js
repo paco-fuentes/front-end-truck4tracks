@@ -28,6 +28,17 @@ export const profileCall = async (token) => {
   });
 };
 
+export const updateProfileCall = async (body, token) => {
+  return await axios.put(`${HOST_URL}/user/profile`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const getAllActivitiesCall = async () => {
+  return await axios.get(`${HOST_URL}/user/allactivities`);
+};
 // messages
 export const getAllBandMessages = async (id) => {
   return await axios.get(`${HOST_URL}/messages/band/${id}`);
@@ -42,6 +53,14 @@ export const postMessage = async (id, body, token) => {
 };
 
 // band
+export const createBandCall = async (body, token) => {
+  return await axios.post(`${HOST_URL}/band/register`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 export const joinBandCall = async (body, token) => {
   return await axios.post(`${HOST_URL}/user/joinband`, body, {
     headers: {
