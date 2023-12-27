@@ -4,7 +4,6 @@
   flex-direction: column;
   margin: 2em;
   align-items: center;
-  flex-direction: column;
   background-color: var(--blue-col);
   border-color: var(--white-col);
   color: white;
