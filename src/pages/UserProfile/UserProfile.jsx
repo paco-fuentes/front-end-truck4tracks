@@ -65,6 +65,12 @@ export const UserProfile = () => {
         }
     }, [userProfileData]);
 
+    // manejo de errores
+    // const [userError, setUserError] = useState({
+    //    usernameError: "",
+    //     emailError: ""
+    // })
+
     const errorCheck = (e) => {
         let error = "";
         error = validator(e.target.name, e.target.value);
@@ -182,6 +188,14 @@ export const UserProfile = () => {
                             : (<div className="editDesign" onClick={() => sendProfileData()}>Send</div>)
                     }
                 </div>
+                {(profileError.usernameError === true)
+                    ? ""
+                    : <div className='errorMsg'>{profileError.usernameError}</div>
+                }
+                {(profileError.emailError === true)
+                    ? ""
+                    : <div className='errorMsg'>{profileError.emailError}</div>
+                }
             </div>
             <div className='profileContainer'>
                 <div>Start a new band:</div>
