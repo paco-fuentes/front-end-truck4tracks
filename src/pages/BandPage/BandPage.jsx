@@ -51,9 +51,6 @@ export const BandPage = () => {
         getMessages();
     }, [dispatch, id]);
 
-    console.log(isBandMember);
-    // console.log('messages: ', messages);
-
     const sendNewMessage = async (message) => {
         try {
             const body = { message };
@@ -65,18 +62,6 @@ export const BandPage = () => {
             console.error('Error send message --> ', error);
         }
     };
-
-    // const checkIsMember = async () => {
-    //     try {
-    //         const response = await getBandMembers(id, token);
-    //         console.log("response--->", response);
-    //         const bandMembers = response.data;
-    //         // const userIsMember = bandMembers.some(member => member.id === userCredentialsRedux.id);
-
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
 
     const joinBandButton = async () => {
         try {
@@ -113,7 +98,7 @@ export const BandPage = () => {
         }
         checkIsMember();
     }, [isBandMember])
-
+    console.log(tracks);
     return (
         <div className="bandPageDesign">
             <div className="bandPageContainer">

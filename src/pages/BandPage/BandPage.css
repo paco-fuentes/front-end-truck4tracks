@@ -7,6 +7,7 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  overflow-y: auto;
   background: repeating-linear-gradient(
     to right,
     var(--pink-col),
@@ -29,7 +30,7 @@
   justify-content: space-between;
   align-items: center;
   width: 80vw;
-  margin-bottom: 2em;
+  margin: 2em;
 }
 
 .bandInfoContainer {
