@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { FieldInput2 } from '../../common/FieldInput2/FieldInput2';
 import { registerCall } from '../../services/apiCalls';
 import { validator } from '../../services/useful';
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
+    const navigate = useNavigate();
     const [userBody, setUserBody] = useState({
         activity_id: 1,
         username: '',
@@ -41,7 +43,8 @@ export const Register = () => {
         registerCall(userBody)
             .then(
                 result => {
-                    console.log(userBody);
+                    // console.log(userBody);
+                    navigate('/');
                 }
             )
             .catch(error => console.log(error));
