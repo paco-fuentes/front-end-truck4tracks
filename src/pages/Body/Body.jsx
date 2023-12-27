@@ -5,6 +5,7 @@ import { UserProfile } from "../UserProfile/UserProfile"
 import { Login } from "../Login/Login"
 import { Bands } from "../Bands/Bands"
 import { BandPage } from "../BandPage/BandPage"
+import { Admin } from "../Admin/Admin"
 
 export const Body = () => {
     return (
@@ -17,6 +18,7 @@ export const Body = () => {
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/allbands" element={<Bands />} />
                 <Route path="/band/:id" element={<BandPage />} />
+                <Route path="/admin" element={<Admin />} />
             </Routes>
         </>
     );

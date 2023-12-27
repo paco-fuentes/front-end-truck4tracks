@@ -45,7 +45,17 @@ export const Header = () => {
             <NavButton path={"/"} title={"Log Out"} design={"buttonLogin"} />
           </div>
         </>
-      ))}
+      )) || (currentRole === 2 && (
+        <>
+          <div className="buttonContainerProfile">
+            <NavButton path={"/admin"} title={"Admin"} design={"buttonProfile"} />
+          </div>
+          <div className="buttonContainerLogin" onClick={logOutMe}>
+            <NavButton path={"/"} title={"Log Out"} design={"buttonLogin"} />
+          </div>
+        </>
+      ))
+      }
     </div>
   );
 };
