@@ -7,17 +7,20 @@
   background-color: var(--blue-col);
   border-color: var(--white-col);
   color: white;
-  border-width: 0.2;
+  border-width: 0.3em;
+  border-radius: 0.7em;
   border-style: solid;
   width: 20em;
   height: 20em;
   text-align: center;
-  box-shadow: var(--white-col) 0.3rem 0.5rem 0rem 0.03rem;
-  transition: transform 150ms;
+  box-shadow: var(--calid-dark-col) 1em 1.1em 0em 0em;
+  transition: 150ms
 }
 
 .bandCard:hover {
   transform: scale(1.05);
+  box-shadow: var(--calid-dark-col) 1.8em 2.1em 0em 0em;
+  transition: 150ms
 }
 
 .imgBandCard {
