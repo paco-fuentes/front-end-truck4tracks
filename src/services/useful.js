@@ -3,8 +3,11 @@ export const validator = (type, value) => {
     case "email":
     case "correo":
     case "mail":
-      if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/.test(value)) 
-        {
+      if (
+        !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/.test(
+          value
+        )
+      ) {
         return "Invalid e-mail format";
       } else {
         return true;
@@ -18,12 +21,12 @@ export const validator = (type, value) => {
         return true;
       }
 
-      case "about":
-          if (value.length > 200) {
-            return "Username 20 characters max";
-          } else {
-            return true;
-          }
+    case "about":
+      if (value.length > 200) {
+        return "Username 20 characters max";
+      } else {
+        return true;
+      }
 
     case "phone":
     case "telefono":

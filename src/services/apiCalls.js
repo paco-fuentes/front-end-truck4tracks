@@ -102,3 +102,13 @@ export const getAllUsersCall = async (token) => {
     },
   });
 };
+
+// resulto problema en el que no reconoce el token con este formato data: {id} dentro
+export const deleteUserByBodyIdCall = async (id, token) => {
+  return await axios.delete(`${HOST_URL}/admin/usertoremove`, {
+    data: { id },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

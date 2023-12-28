@@ -43,7 +43,6 @@ export const Register = () => {
         registerCall(userBody)
             .then(
                 result => {
-                    // console.log(userBody);
                     navigate('/');
                 }
             )
@@ -80,8 +79,8 @@ export const Register = () => {
                     />
                 </div>
                 {(userError.passwordError === true && userError.emailError === true && userError.usernameError === true)
-                    ? <div className="regButton" onClick={submit}>Submit</div>
-                    : <div className="regButtonInactive">Submit</div>
+                    ? <div className="regButton" onClick={submit}>Register</div>
+                    : <div className="regButtonInactive">Register</div>
                 }
                 {(userError.usernameError === true)
                     ? ""
@@ -95,7 +94,6 @@ export const Register = () => {
                     ? ""
                     : <div className='errorMsg'>{userError.passwordError}</div>
                 }
-
             </div>
         </div>
     );

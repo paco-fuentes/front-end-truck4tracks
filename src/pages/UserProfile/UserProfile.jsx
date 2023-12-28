@@ -40,14 +40,12 @@ export const UserProfile = () => {
         username: '',
         email: '',
         activity: '',
-        // img_url: '',
     })
 
     const [profileError, setProfileError] = useState({
         usernameError: '',
         emailError: '',
         activity: '',
-        // img_url: '',
     });
 
     const [isEnabled, setIsEnabled] = useState(true);
@@ -60,16 +58,9 @@ export const UserProfile = () => {
                 username: username || '',
                 email: email || '',
                 activity: activity || '',
-                // img_url: img_url || '',
             });
         }
     }, [userProfileData]);
-
-    // manejo de errores
-    // const [userError, setUserError] = useState({
-    //    usernameError: "",
-    //     emailError: ""
-    // })
 
     const errorCheck = (e) => {
         let error = "";
@@ -94,7 +85,6 @@ export const UserProfile = () => {
                 username: profile.username,
                 email: profile.email,
                 activity: profile.activity,
-                // img_url: profile.img_url,
             };
 
             const response = await updateProfileCall(body, token);
@@ -116,14 +106,12 @@ export const UserProfile = () => {
             const body = {
                 band_name: newBand.band_name,
                 about: newBand.about,
-                // img_url: newBand.img_url,
             };
 
             const response = await createBandCall(body, token);
-            // setIsEnabled(true);
             setNewBand(response.data.data);
         } catch (error) {
-            console.error(`Error al actualizar el perfil ${error}`);
+            console.error(`Error creating band: ${error}`);
         }
     };
 
@@ -217,11 +205,8 @@ export const UserProfile = () => {
                     functionProp={(e) => functionHandlerBand(e, "about")}
                     functionBlur={errorCheck}
                 />
-                <div onClick={createNewBand}>
-                    Create
-                </div>
+                <div onClick={createNewBand}>Create</div>
             </div>
         </div>
     );
-
 };

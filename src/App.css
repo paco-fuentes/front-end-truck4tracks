@@ -16,6 +16,11 @@ img {
   user-select: none;
 }
 
+.errorMsg {
+  font-family: var(--defTxt);
+  color: var(--white-col);
+}
+
 :root {
   --green-col: #5fbcac;
   --pink-col: #ea95d9;

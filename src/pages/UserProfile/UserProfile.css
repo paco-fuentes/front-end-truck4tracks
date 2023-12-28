@@ -31,12 +31,15 @@
   border-color: white;
   box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
   transition: 150ms;
+  width: 22em;
+  height: 32em;
 }
 
 .profileInfo {
   margin: 1em;
   display: flex;
   flex-direction: column;
+  color: white;
 }
 
 .profileContainer img {
@@ -44,7 +47,7 @@
   border-radius: 0.7em;
   border-style: solid;
   border-color: white;
-  width: 20vw;
+  width: 14em;
   margin: 1em;
 }
 
@@ -118,15 +121,12 @@
 
 
 .inputDesign {
-  height: 2em;
-  width: 15em;
 
   border-radius: 0.3em;
-  border: 0.3 solid rgb(0, 0, 0);
-
+  border: 0.1 solid rgb(0, 0, 0);
   margin-bottom: 2em;
 }
 
 .inputDesignError {
-  border: 0.2em red solid;
+  border-width: 0.1em;
 }
