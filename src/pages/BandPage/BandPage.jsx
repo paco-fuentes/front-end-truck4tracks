@@ -34,7 +34,7 @@ export const BandPage = () => {
     const [isBandMember, setIsBandMember] = useState(false);
 
     const [bandPage, setBandPage] = useState(null);
-    const [multitrack, setMultitrack] = useState(null);
+    const [multitrack, setMultitrack] = useState({});
     const [tracks, setTracks] = useState(null);
     const [messages, setMessages] = useState(null);
     const { id } = useParams();
@@ -122,7 +122,7 @@ export const BandPage = () => {
             [e.target.name]: e.target.value,
         }));
     };
-
+    
     const [multiExist, setMultiExist] = useState();
     const createMultitracK = async () => {
         try {
@@ -130,6 +130,7 @@ export const BandPage = () => {
             // "project_title": "El cassette desde React III",
             // "img_url": "https://media.istockphoto.com/id/1328430843/vector/girls-band.jpg?s=612x612&w=0&k=20&c=Od2--mSNnlvFsE4meO-fxNUMjvIzy4b5s4tb6ZDL_Rk="
             const response = await createMultitrackCall(id, body, token);
+            setMultitrack(response.data.data);
             setMultiExist(true);
         } catch (error) {
             console.error('Error creating new multitrack', error);
@@ -147,6 +148,9 @@ export const BandPage = () => {
                 setBandPage(bandPageData);
                 setMultitrack(multitrackData);
                 setTracks(tracksData);
+                if (multitrackData) {
+                    setMultiExist(true);
+                }
             } catch (error) {
                 console.error('Error get bandpage---> ', error);
             }
@@ -155,6 +159,8 @@ export const BandPage = () => {
         // }, [id, createMultitracK]);
     }, []);
 
+
+
     const loginPage = () => {
         navigate('/login');
     }
@@ -162,8 +168,11 @@ export const BandPage = () => {
     console.log('mi current id: ', currentId);
     console.log('id del band leader: ', bandPage?.band_leader);
     console.log('band member: ', isBandMember);
+    console.log('multitrack: ', multitrack);
+    // if (multitrack) {
+    //     setMultiExist(true);
+    // }
     console.log('Hay multitrack: ', multiExist);
-
     return (
         <div className="bandPageDesign">
             <div className="bandPageContainer">
@@ -179,7 +188,7 @@ export const BandPage = () => {
                                 </div>
                             </div>
                             <div>
-                                {(typeof multiExist !== 'undefined') && (
+                                {(typeof multiExist === 'undefined') && (
                                     <div>
                                         {(bandPage.band_leader !== currentId) ? (
                                             <div>You must be logued as band leader to create a multitrack
@@ -207,12 +216,12 @@ export const BandPage = () => {
                                         )}
                                     </div>
                                 )}
-                                {(typeof multiExist === 'undefined') && (
+                                {(multiExist === true) && (
                                     <div>
-                                    <Multitrack
-                                        title={multitrack.project_title}
-                                        img={multitrack.img_url}
-                                        tracks={tracks}
+                                        <Multitrack
+                                            title={multitrack.project_title}
+                                            img={multitrack.img_url}
+                                            tracks={tracks}
                                         />
                                         <div>{isBandMember ? (<div>Soy member</div>) : (<div>no soy member</div>)}</div>
                                     </div>
