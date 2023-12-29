@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
     checkIfBandMemberCall,
     createMultitrackCall,
+    createTrackCall,
     getAllBandMessages,
     getBandByParams,
     getBandMembers,
@@ -122,7 +123,7 @@ export const BandPage = () => {
             [e.target.name]: e.target.value,
         }));
     };
-    
+
     const [multiExist, setMultiExist] = useState();
     const createMultitracK = async () => {
         try {
@@ -132,6 +133,38 @@ export const BandPage = () => {
             const response = await createMultitrackCall(id, body, token);
             setMultitrack(response.data.data);
             setMultiExist(true);
+        } catch (error) {
+            console.error('Error creating new multitrack', error);
+        }
+    };
+
+    console.log(multitrack.id);
+
+    const [trackBody, setTrackBody] = useState({
+        id: multitrack.id,
+        track_name: '',
+        img_url: '',
+        track_url: '',
+    });
+
+    const trackBodyHandler = (e) => {
+        setTrackBody((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+    const createTrack = async () => {
+        try {
+            // const body = trackBody;
+            const body = {
+                "id":multitrack.id,
+                "track_name": "Una canción que hice",
+                "img_url": "https://img.freepik.com/premium-vector/vinyl-record-disc-hand-drawn-engraving-style-sketch-vector-illustration_666729-557.jpg",
+                "track_url": "https://actions.google.com/sounds/v1/science_fiction/alien_beam.ogg?hl=es-419"
+            }
+            const response = await createTrackCall(id, body, token);
+            setTracks(response.data.data);
         } catch (error) {
             console.error('Error creating new multitrack', error);
         }
@@ -185,6 +218,7 @@ export const BandPage = () => {
                                     <div>{bandPage.band_name}</div>
                                     <div>About: </div>
                                     <div>{bandPage.about}</div>
+                                    {(bandPage.band_leader === currentId) ? (<div>Soc el lider</div>):(<div>No soc el LEADER</div>)}
                                 </div>
                             </div>
                             <div>
@@ -223,7 +257,13 @@ export const BandPage = () => {
                                             img={multitrack.img_url}
                                             tracks={tracks}
                                         />
-                                        <div>{isBandMember ? (<div>Soy member</div>) : (<div>no soy member</div>)}</div>
+                                        <div>{isBandMember ?
+                                            (<div>Soy member
+                                                <div onClick={createTrack} className="joinButton">Load Track</div>
+                                            </div>
+                                            ) : (
+                                                <div>no soy member</div>)}
+                                        </div>
                                     </div>
                                 )}
                             </div>

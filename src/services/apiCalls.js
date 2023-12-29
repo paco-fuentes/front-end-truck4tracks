@@ -122,3 +122,12 @@ export const createMultitrackCall = async (id, body, token) => {
     },
   });
 };
+
+// create track on current multitrack as bandmember
+export const createTrackCall = async (id, body, token) => {
+  return await axios.post(`${HOST_URL}/multitrack/loadtrack/${id}`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
