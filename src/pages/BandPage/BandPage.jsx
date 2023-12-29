@@ -159,6 +159,7 @@ export const BandPage = () => {
 
     console.log('mi current id: ', currentId);
     console.log('id del band leader: ', bandPage?.band_leader);
+    console.log('band member: ', isBandMember);
 
     return (
         <div className="bandPageDesign">
@@ -224,15 +225,21 @@ export const BandPage = () => {
                             )}
                         </div>)}
 
-                        <div className="chatCont">
-                            {messages && (
-                                <BandChat
-                                    placeholder={'Escribe a la banda...'}
-                                    messages={messages}
-                                    onSendMessage={sendNewMessage}
-                                />
+                        {(isBandMember) ?
+                            (<div className="chatCont">
+                                {messages && (
+                                    <BandChat
+                                        placeholder={'Escribe a la banda...'}
+                                        messages={messages}
+                                        onSendMessage={sendNewMessage}
+                                    />
+                                )}
+                            </div>) : (
+                                <div>
+                                    Join band to chat with the band
+                                </div>
                             )}
-                        </div>
+
                     </>
                 )}
             </div>
