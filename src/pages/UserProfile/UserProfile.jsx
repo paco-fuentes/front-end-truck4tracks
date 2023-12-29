@@ -5,12 +5,44 @@ import { userData } from '../userTokenSlice';
 import { FieldInput } from '../../common/FieldInput/FieldInput';
 import { validator } from '../../services/useful';
 import './UserProfile.css'
+import { useNavigate } from 'react-router-dom';
 
 export const UserProfile = () => {
     const userCredentialsRedux = useSelector(userData);
     const token = userCredentialsRedux.credentials;
     const [userProfileData, setUserProfileData] = useState(null);
     const [activities, setActivities] = useState();
+    const navigate = useNavigate();
+
+    const [newBand, setNewBand] = useState({
+        band_name: '',
+        about: '',
+        img_url: '',
+    });
+
+    console.log(newBand);
+
+    const createNewBand = async () => {
+        try {
+            const body = {
+                band_name: newBand.band_name,
+                about: newBand.about,
+            };
+            const response = await createBandCall(body, token);
+            setNewBand(response.data);
+            const newBandId=response.data.band.id
+            navigate(`/band/${newBandId}`)
+        } catch (error) {
+            console.error(`Error creating band: ${error}`);
+        }
+    };
+
+    const functionHandlerBand = (e, fieldName) => {
+        setNewBand((prevState) => ({
+            ...prevState,
+            [fieldName]: e.target.value,
+        }));
+    };
 
     useEffect(() => {
         const getProfile = async () => {
@@ -22,7 +54,7 @@ export const UserProfile = () => {
             }
         };
         getProfile();
-    }, [token]);
+    }, [token, newBand]);
 
     useEffect(() => {
         const allActivities = async () => {
@@ -95,32 +127,7 @@ export const UserProfile = () => {
         }
     };
 
-    const [newBand, setNewBand] = useState({
-        band_name: '',
-        about: '',
-        img_url: '',
-    });
 
-    const createNewBand = async () => {
-        try {
-            const body = {
-                band_name: newBand.band_name,
-                about: newBand.about,
-            };
-
-            const response = await createBandCall(body, token);
-            setNewBand(response.data.data);
-        } catch (error) {
-            console.error(`Error creating band: ${error}`);
-        }
-    };
-
-    const functionHandlerBand = (e, fieldName) => {
-        setNewBand((prevState) => ({
-            ...prevState,
-            [fieldName]: e.target.value,
-        }));
-    };
 
     return (
         <div className='profileDesign'>
@@ -205,7 +212,7 @@ export const UserProfile = () => {
                     functionProp={(e) => functionHandlerBand(e, "about")}
                     functionBlur={errorCheck}
                 />
-                <div onClick={createNewBand}>Create</div>
+                <div onClick={createNewBand} className='profileButton'>Create</div>
             </div>
         </div>
     );
