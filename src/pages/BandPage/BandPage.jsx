@@ -10,18 +10,26 @@ import {
     leaveBandCall,
     postMessage
 } from "../../services/apiCalls";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Multitrack } from "../../common/Multitrack/Multitrack";
 import { BandChat } from "../../common/BandChat/BandChat";
 import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../userTokenSlice";
 import { addMessage, setMessages } from "../bandMessagesSlice";
 import { FieldInput2 } from "../../common/FieldInput2/FieldInput2";
+import { jwtDecode } from "jwt-decode";
 
 export const BandPage = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const userCredentialsRedux = useSelector(userData);
     const token = userCredentialsRedux.credentials;
+    let currentId;
+    if ((typeof token) !== "object") {
+        const decToken = token ? jwtDecode(token) : null;
+        currentId = decToken?.id;
+    }
+
     // const bandMessages = useSelector((state) => state.bandMessages);
     const [isBandMember, setIsBandMember] = useState(false);
 
@@ -58,8 +66,8 @@ export const BandPage = () => {
         // }, [dispatch, sendNewMessage, id]);
     }, [dispatch, id, messageButton]);
 
-    if(messageButton){
-        setMessageButton(false); 
+    if (messageButton) {
+        setMessageButton(false);
     }
     // console.log(messageButton);
 
@@ -145,7 +153,12 @@ export const BandPage = () => {
         // }, [id, createMultitracK]);
     }, []);
 
-    // console.log(multitrack);
+    const loginPage = () => {
+        navigate('/login');
+    }
+
+    console.log('mi current id: ', currentId);
+    console.log('id del band leader: ', bandPage?.band_leader);
 
     return (
         <div className="bandPageDesign">
@@ -164,32 +177,30 @@ export const BandPage = () => {
                             <div>
                                 {!multitrack && (
                                     <div>
-                                        <div className="fieldComp">
-                                            <FieldInput2
-                                                design={'inputReg'}
-                                                type={"project_title"}
-                                                name={"project_title"}
-                                                placeholder={"Your project title..."}
-                                                functionProp={multitrackBodyHandler}
-                                            // functionBlur={errorCheck}
-                                            />
-                                            <FieldInput2
-                                                design={'inputReg'}
-                                                type={"img_url"}
-                                                name={"img_url"}
-                                                placeholder={"Image link"}
-                                                functionProp={multitrackBodyHandler}
-                                            // functionBlur={errorCheck}
-                                            />
-                                            {token &&
+                                        {(bandPage.band_leader !== currentId) ? (
+                                            <div>You must be logued as band leader to create a multitrack
+                                            </div>
+                                        ) : (
+                                            <div className="fieldComp">
+                                                <FieldInput2
+                                                    design={'inputReg'}
+                                                    type={"project_title"}
+                                                    name={"project_title"}
+                                                    placeholder={"Your project title..."}
+                                                    functionProp={multitrackBodyHandler}
+                                                // functionBlur={errorCheck}
+                                                />
+                                                <FieldInput2
+                                                    design={'inputReg'}
+                                                    type={"img_url"}
+                                                    name={"img_url"}
+                                                    placeholder={"Image link"}
+                                                    functionProp={multitrackBodyHandler}
+                                                // functionBlur={errorCheck}
+                                                />
                                                 <div onClick={createMultitracK} className="joinButton">Create Multitrack</div>
-                                            }
-                                            {!token &&
-                                                <div>You must be logued as band leader to create a multitrack
-                                                    <div className="joinButtonInactive">Create Multitrack</div>
-                                                </div>
-                                            }
-                                        </div>
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                                 {multitrack && (
@@ -201,13 +212,18 @@ export const BandPage = () => {
                                 )}
                             </div>
                         </div>
-                        <div>
+                        {(!token) ? (
+                            <div>
+                                <div className="joinButton" onClick={loginPage}>Login</div>
+                            </div>
+                        ) : (<div>
                             {!isBandMember ? (
                                 <div className="joinButton" onClick={joinBandButton}>Join</div>
                             ) : (
                                 <div className="joinButton" onClick={leaveBandButton}>Leave</div>
                             )}
-                        </div>
+                        </div>)}
+
                         <div className="chatCont">
                             {messages && (
                                 <BandChat
