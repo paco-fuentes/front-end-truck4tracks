@@ -39,5 +39,4 @@ export const BandChat = ({ messages, design, placeholder, onSendMessage }) => {
             </div>
         </div>
     );
-
 };

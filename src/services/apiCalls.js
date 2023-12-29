@@ -112,3 +112,13 @@ export const deleteUserByBodyIdCall = async (id, token) => {
     },
   });
 };
+
+
+// create multitrack
+export const createMultitrackCall = async (id, body, token) => {
+  return await axios.post(`${HOST_URL}/multitrack/create/${id}`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
