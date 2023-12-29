@@ -23,7 +23,7 @@ export const BandPage = () => {
     const userCredentialsRedux = useSelector(userData);
     const token = userCredentialsRedux.credentials;
     // const bandMessages = useSelector((state) => state.bandMessages);
-    const [isBandMember, setIsBandMember] = useState();
+    const [isBandMember, setIsBandMember] = useState(false);
 
     const [bandPage, setBandPage] = useState(null);
     const [multitrack, setMultitrack] = useState(null);
@@ -31,17 +31,20 @@ export const BandPage = () => {
     const [messages, setMessages] = useState(null);
     const { id } = useParams();
 
+    const [messageButton, setMessageButton] = useState(false);
+
     const sendNewMessage = async (message) => {
         try {
             const body = { message };
             console.log('mensaje ---> ' + body.message);
+            setMessageButton(true)
             const response = await postMessage(id, body, token);
             dispatch(addMessage(response.data.message));
         } catch (error) {
             console.error('Error send message --> ', error);
         }
     };
-   
+
     useEffect(() => {
         const getMessages = async () => {
             try {
@@ -52,27 +55,36 @@ export const BandPage = () => {
             }
         };
         getMessages();
-    }, [dispatch, sendNewMessage, id]);
+        // }, [dispatch, sendNewMessage, id]);
+    }, [dispatch, id, messageButton]);
+
+    if(messageButton){
+        setMessageButton(false); 
+    }
+    // console.log(messageButton);
 
     // refactorizar join/leave en un boton con useEffect
+    const [joinButton, setJoinButton] = useState();
+
     const joinBandButton = async () => {
         try {
             const body = { "band_id": id };
             console.log(id, token);
             const response = await joinBandCall(body, token);
-            checkNow();
             console.log(response.data);
+            setJoinButton(false);
         } catch (error) {
             console.log("User can't join the band");
         }
     }
-
+    // console.log(joinButton);
     const leaveBandButton = async () => {
         try {
             const body = { "band_id": id };
             console.log(id, token);
             const response = await leaveBandCall(body, token);
             console.log(response.data);
+            setJoinButton(true);
         } catch (error) {
             console.log("User can't join the band");
         }
@@ -89,8 +101,7 @@ export const BandPage = () => {
             }
         }
         checkIsMember();
-    // }, [isBandMember, leaveBandButton, joinBandButton])
-    }, [isBandMember])
+    }, [isBandMember, joinButton])
 
     const [multitrackBody, setMultitrackBody] = useState({
         project_title: '',
@@ -131,10 +142,11 @@ export const BandPage = () => {
             }
         };
         getBandPage();
-    // }, [id, createMultitracK]);
-    }, [id]);
+        // }, [id, createMultitracK]);
+    }, []);
 
     // console.log(multitrack);
+
     return (
         <div className="bandPageDesign">
             <div className="bandPageContainer">
