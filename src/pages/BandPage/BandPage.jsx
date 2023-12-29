@@ -123,12 +123,14 @@ export const BandPage = () => {
         }));
     };
 
+    const [multiExist, setMultiExist] = useState();
     const createMultitracK = async () => {
         try {
             const body = multitrackBody;
             // "project_title": "El cassette desde React III",
             // "img_url": "https://media.istockphoto.com/id/1328430843/vector/girls-band.jpg?s=612x612&w=0&k=20&c=Od2--mSNnlvFsE4meO-fxNUMjvIzy4b5s4tb6ZDL_Rk="
             const response = await createMultitrackCall(id, body, token);
+            setMultiExist(true);
         } catch (error) {
             console.error('Error creating new multitrack', error);
         }
@@ -160,6 +162,7 @@ export const BandPage = () => {
     console.log('mi current id: ', currentId);
     console.log('id del band leader: ', bandPage?.band_leader);
     console.log('band member: ', isBandMember);
+    console.log('Hay multitrack: ', multiExist);
 
     return (
         <div className="bandPageDesign">
@@ -176,7 +179,7 @@ export const BandPage = () => {
                                 </div>
                             </div>
                             <div>
-                                {!multitrack && (
+                                {(typeof multiExist !== 'undefined') && (
                                     <div>
                                         {(bandPage.band_leader !== currentId) ? (
                                             <div>You must be logued as band leader to create a multitrack
@@ -204,12 +207,15 @@ export const BandPage = () => {
                                         )}
                                     </div>
                                 )}
-                                {multitrack && (
+                                {(typeof multiExist === 'undefined') && (
+                                    <div>
                                     <Multitrack
                                         title={multitrack.project_title}
                                         img={multitrack.img_url}
                                         tracks={tracks}
-                                    />
+                                        />
+                                        <div>{isBandMember ? (<div>Soy member</div>) : (<div>no soy member</div>)}</div>
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -224,7 +230,6 @@ export const BandPage = () => {
                                 <div className="joinButton" onClick={leaveBandButton}>Leave</div>
                             )}
                         </div>)}
-
                         {(isBandMember) ?
                             (<div className="chatCont">
                                 {messages && (
