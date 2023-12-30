@@ -138,10 +138,11 @@ export const BandPage = () => {
         }
     };
 
-    console.log(multitrack.id);
+
+    console.log(multitrack?.id);
 
     const [trackBody, setTrackBody] = useState({
-        id: multitrack.id,
+        id: multitrack?.id,
         track_name: '',
         img_url: '',
         track_url: '',
@@ -158,7 +159,7 @@ export const BandPage = () => {
         try {
             // const body = trackBody;
             const body = {
-                "id":multitrack.id,
+                "id": multitrack.id,
                 "track_name": "Una canción que hice",
                 "img_url": "https://img.freepik.com/premium-vector/vinyl-record-disc-hand-drawn-engraving-style-sketch-vector-illustration_666729-557.jpg",
                 "track_url": "https://actions.google.com/sounds/v1/science_fiction/alien_beam.ogg?hl=es-419"
@@ -218,7 +219,7 @@ export const BandPage = () => {
                                     <div>{bandPage.band_name}</div>
                                     <div>About: </div>
                                     <div>{bandPage.about}</div>
-                                    {(bandPage.band_leader === currentId) ? (<div>Soc el lider</div>):(<div>No soc el LEADER</div>)}
+                                    {(bandPage.band_leader === currentId) ? (<div>Soc el lider</div>) : (<div>No soc el LEADER</div>)}
                                 </div>
                             </div>
                             <div>
