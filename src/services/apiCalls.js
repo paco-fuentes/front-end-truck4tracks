@@ -53,6 +53,14 @@ export const postMessage = async (id, body, token) => {
   });
 };
 
+export const deleteMessageCall = async (id, body, token) => {
+  return await axios.delete(`${HOST_URL}/messages/band/${id}`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 // band
 export const createBandCall = async (body, token) => {
   return await axios.post(`${HOST_URL}/band/register`, body, {
@@ -112,7 +120,6 @@ export const deleteUserByBodyIdCall = async (id, token) => {
     },
   });
 };
-
 
 // create multitrack
 export const createMultitrackCall = async (id, body, token) => {
