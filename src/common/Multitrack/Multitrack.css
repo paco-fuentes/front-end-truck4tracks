@@ -6,13 +6,15 @@
   border-width: 0.2;
   border-style: solid;
   border-radius: 0.7em;
-  width: 40vw;
-  height: fit-content;
+  width: 44vw;
+  height: 30vh;
   font-weight: lighter;
   text-align: center;
   justify-content: center;
   align-items: center;
   box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .multiInfo {
@@ -50,8 +52,7 @@
   text-align: left;
 }
 
-
-.emptyMulti{
+.emptyMulti {
   display: flex;
   flex-direction: column;
   background-color: var(--yellow-col);

@@ -145,6 +145,8 @@ export const BandPage = () => {
         }));
     };
 
+   const multitrackErrorHandler = ()=>{};
+
     const [multiExist, setMultiExist] = useState();
     const createMultitracK = async () => {
         try {
@@ -165,6 +167,9 @@ export const BandPage = () => {
         img_url: '',
         track_url: '',
     });
+
+    // poner errores... addError
+    const trackErrorHandler = ()=>{};
 
     useEffect(() => {
         setTrackBody((prevState) => ({
@@ -216,7 +221,7 @@ export const BandPage = () => {
         };
         getBandPage();
         // }, [id, createMultitracK]);
-    }, []);
+    }, [tracks]);
 
     const loginPage = () => {
         navigate('/login');
@@ -257,7 +262,7 @@ export const BandPage = () => {
                                                     name={"project_title"}
                                                     placeholder={"Your project title..."}
                                                     functionProp={multitrackBodyHandler}
-                                                // functionBlur={errorCheck}
+                                                functionBlur={multitrackErrorHandler}
                                                 />
                                                 <FieldInput2
                                                     design={'inputReg'}
@@ -265,7 +270,7 @@ export const BandPage = () => {
                                                     name={"img_url"}
                                                     placeholder={"Image link"}
                                                     functionProp={multitrackBodyHandler}
-                                                // functionBlur={errorCheck}
+                                                functionBlur={multitrackErrorHandler}
                                                 />
                                                 <div onClick={createMultitracK} className="joinButton">Create Multitrack</div>
                                             </div>
@@ -287,7 +292,7 @@ export const BandPage = () => {
                                                     name={"track_name"}
                                                     placeholder={"Your track title..."}
                                                     functionProp={trackBodyHandler}
-                                                // functionBlur={errorCheck}
+                                                functionBlur={trackErrorHandler}
                                                 />
                                                 <FieldInput2
                                                     design={'inputReg'}
@@ -295,7 +300,7 @@ export const BandPage = () => {
                                                     name={"img_url"}
                                                     placeholder={"Add an image..."}
                                                     functionProp={trackBodyHandler}
-                                                // functionBlur={errorCheck}
+                                                functionBlur={trackErrorHandler}
                                                 />
                                                 <FieldInput2
                                                     design={'inputReg'}
@@ -303,7 +308,7 @@ export const BandPage = () => {
                                                     name={"track_url"}
                                                     placeholder={"Load a track..."}
                                                     functionProp={trackBodyHandler}
-                                                // functionBlur={errorCheck}
+                                                functionBlur={trackErrorHandler}
                                                 />
                                                 <div onClick={createTrack} className="joinButton">Load Track</div>
                                             </div>
