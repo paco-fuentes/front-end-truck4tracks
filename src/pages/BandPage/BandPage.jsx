@@ -4,6 +4,7 @@ import {
     checkIfBandMemberCall,
     createMultitrackCall,
     createTrackCall,
+    deleteMessageCall,
     getAllBandMessages,
     getBandByParams,
     getBandMembers,
@@ -50,15 +51,32 @@ export const BandPage = () => {
             setMessageButton(true)
             const response = await postMessage(id, body, token);
             dispatch(addMessage(response.data.message));
-            setSelectedMessageId(message);
+            // setSelectedMessageId(message);
 
         } catch (error) {
             console.error('Error send message --> ', error);
         }
     };
 
-    console.log('mi selected message: ', selectedMessageId);
+    // console.log('mi selected message: ', selectedMessageId);
 
+    useEffect(() => {
+        const deleteSelectedMessage = async () => {
+            try {
+                const body = { "message_id": selectedMessageId };
+                console.log(body);
+                const response = await deleteMessageCall(id, body, token);
+                console.log(response.data);
+                setMessages((prevMessages) => prevMessages.filter(message => message.id !== selectedMessageId));
+    
+            } catch (error) {
+                console.error('Error send message --> ', error);
+            }
+        };
+    
+        deleteSelectedMessage();
+    }, [selectedMessageId]);
+    
     useEffect(() => {
         const getMessages = async () => {
             try {
@@ -161,7 +179,6 @@ export const BandPage = () => {
             [e.target.name]: e.target.value,
         }));
     };
-
 
     const createTrack = async () => {
         try {

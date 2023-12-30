@@ -54,12 +54,14 @@ export const postMessage = async (id, body, token) => {
 };
 
 export const deleteMessageCall = async (id, body, token) => {
-  return await axios.delete(`${HOST_URL}/messages/band/${id}`, body, {
+  return await axios.delete(`${HOST_URL}/messages/band/${id}`, {
+    data: body,
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 };
+
 
 // band
 export const createBandCall = async (body, token) => {
