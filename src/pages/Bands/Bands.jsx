@@ -16,6 +16,17 @@ export const Bands = () => {
         }
     }, [bands]);
 
+    const cardColors = [
+        "--green-col",
+        "--pink-col",
+        "--pink-d-col",
+        // "--white-col",
+        // "--yellow-col",
+        "--calid-dark-col",
+        "--blue-col",
+      ];
+      
+
     return (
         <div className="bandsDesign">
             {bands.length > 0 ? (
@@ -28,6 +39,7 @@ export const Bands = () => {
                             bandLeader={band.band_leader.username}
                             genres={band.genre_names}
                             hiring={band.hiring}
+                            color={cardColors[band.id % cardColors.length]}
                         />
                     </div>
                 ))

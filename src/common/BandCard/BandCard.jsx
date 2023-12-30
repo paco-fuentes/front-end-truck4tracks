@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./BandCard.css";
 
-export const BandCard = ({ id, image, bandName, bandLeader, genres, hiring }) => {
+export const BandCard = ({ id, image, bandName, bandLeader, genres, hiring, color }) => {
     const navigate = useNavigate();
 
     const SubmitIdToSeeBand = () => {
@@ -9,7 +9,7 @@ export const BandCard = ({ id, image, bandName, bandLeader, genres, hiring }) =>
     }
 
     return (
-        <div key={id} className="bandCard">
+        <div key={id} className="bandCard" style={{ backgroundColor: `var(${color})` }}>
             <div><img src={image} width="100" className="imgBandCard" /></div>
             <div styles="font-size: 3em">{bandName}</div>
             <div>by {bandLeader}</div>
