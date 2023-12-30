@@ -62,7 +62,6 @@ export const deleteMessageCall = async (id, body, token) => {
   });
 };
 
-
 // band
 export const createBandCall = async (body, token) => {
   return await axios.post(`${HOST_URL}/band/register`, body, {

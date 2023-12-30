@@ -72,11 +72,11 @@ export const BandPage = () => {
             } catch (error) {
                 console.error('Error send message --> ', error);
             }
-        };    
+        };
         deleteSelectedMessage();
     }, [selectedMessageId]);
-    
-    
+
+
     useEffect(() => {
         const getMessages = async () => {
             try {
@@ -88,7 +88,7 @@ export const BandPage = () => {
         };
         getMessages();
         // }, [dispatch, sendNewMessage, id]);
-    }, [dispatch, id, messageButton]);
+    }, [dispatch, id, messageButton, messages]);
 
     if (messageButton) {
         setMessageButton(false);
