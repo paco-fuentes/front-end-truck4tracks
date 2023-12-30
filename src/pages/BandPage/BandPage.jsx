@@ -41,6 +41,7 @@ export const BandPage = () => {
     const { id } = useParams();
 
     const [messageButton, setMessageButton] = useState(false);
+    const [selectedMessageId, setSelectedMessageId] = useState(null);
 
     const sendNewMessage = async (message) => {
         try {
@@ -49,10 +50,14 @@ export const BandPage = () => {
             setMessageButton(true)
             const response = await postMessage(id, body, token);
             dispatch(addMessage(response.data.message));
+            setSelectedMessageId(message);
+
         } catch (error) {
             console.error('Error send message --> ', error);
         }
     };
+
+    console.log('mi selected message: ', selectedMessageId);
 
     useEffect(() => {
         const getMessages = async () => {
@@ -70,9 +75,7 @@ export const BandPage = () => {
     if (messageButton) {
         setMessageButton(false);
     }
-    // console.log(messageButton);
 
-    // refactorizar join/leave en un boton con useEffect
     const [joinButton, setJoinButton] = useState();
 
     const joinBandButton = async () => {
@@ -86,7 +89,7 @@ export const BandPage = () => {
             console.log("User can't join the band");
         }
     }
-    // console.log(joinButton);
+
     const leaveBandButton = async () => {
         try {
             const body = { "band_id": id };
@@ -138,18 +141,13 @@ export const BandPage = () => {
         }
     };
 
-    
-
-    console.log(multitrack?.id);
-
     const [trackBody, setTrackBody] = useState({
         id: '',
         track_name: '',
         img_url: '',
         track_url: '',
     });
-    
-    // Efecto para actualizar trackBody cuando multitrack cambia
+
     useEffect(() => {
         setTrackBody((prevState) => ({
             ...prevState,
@@ -163,11 +161,10 @@ export const BandPage = () => {
             [e.target.name]: e.target.value,
         }));
     };
-    
+
 
     const createTrack = async () => {
         try {
-            // const multitrackId = multitrack?.id || '';
             const body = trackBody;
             // const body = {
             //     "id": multitrack.id,
@@ -208,11 +205,11 @@ export const BandPage = () => {
         navigate('/login');
     }
 
-    console.log('mi current id: ', currentId);
-    console.log('id del band leader: ', bandPage?.band_leader);
-    console.log('band member: ', isBandMember);
-    console.log('multitrack: ', multitrack);
-    console.log('Hay multitrack: ', multiExist);
+    // console.log('mi current id: ', currentId);
+    // console.log('id del band leader: ', bandPage?.band_leader);
+    // console.log('band member: ', isBandMember);
+    // console.log('multitrack: ', multitrack);
+    // console.log('Hay multitrack: ', multiExist);
 
     return (
         <div className="bandPageDesign">
@@ -275,7 +272,7 @@ export const BandPage = () => {
                                                     functionProp={trackBodyHandler}
                                                 // functionBlur={errorCheck}
                                                 />
-                                                  <FieldInput2
+                                                <FieldInput2
                                                     design={'inputReg'}
                                                     type={"img_url"}
                                                     name={"img_url"}
@@ -283,7 +280,7 @@ export const BandPage = () => {
                                                     functionProp={trackBodyHandler}
                                                 // functionBlur={errorCheck}
                                                 />
-                                                  <FieldInput2
+                                                <FieldInput2
                                                     design={'inputReg'}
                                                     type={"track_url"}
                                                     name={"track_url"}
@@ -318,6 +315,7 @@ export const BandPage = () => {
                                         placeholder={'Escribe a la banda...'}
                                         messages={messages}
                                         onSendMessage={sendNewMessage}
+                                        onSendButtonClick={setSelectedMessageId}
                                     />
                                 )}
                             </div>) : (
@@ -325,7 +323,6 @@ export const BandPage = () => {
                                     Join band to chat with the band
                                 </div>
                             )}
-
                     </>
                 )}
             </div>
