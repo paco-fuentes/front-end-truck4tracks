@@ -59,23 +59,23 @@ export const BandPage = () => {
     };
 
     // console.log('mi selected message: ', selectedMessageId);
-
     useEffect(() => {
         const deleteSelectedMessage = async () => {
             try {
-                const body = { "message_id": selectedMessageId };
-                console.log(body);
-                const response = await deleteMessageCall(id, body, token);
-                console.log(response.data);
-                setMessages((prevMessages) => prevMessages.filter(message => message.id !== selectedMessageId));
-    
+                if (selectedMessageId !== null) {
+                    const body = { "message_id": selectedMessageId };
+                    console.log(body);
+                    const response = await deleteMessageCall(id, body, token);
+                    console.log(response.data);
+                    setMessages((prevMessages) => prevMessages.filter(message => message.id !== selectedMessageId));
+                }
             } catch (error) {
                 console.error('Error send message --> ', error);
             }
-        };
-    
+        };    
         deleteSelectedMessage();
     }, [selectedMessageId]);
+    
     
     useEffect(() => {
         const getMessages = async () => {
