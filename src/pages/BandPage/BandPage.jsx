@@ -138,15 +138,24 @@ export const BandPage = () => {
         }
     };
 
+    
 
     console.log(multitrack?.id);
 
     const [trackBody, setTrackBody] = useState({
-        id: multitrack?.id,
+        id: '',
         track_name: '',
         img_url: '',
         track_url: '',
     });
+    
+    // Efecto para actualizar trackBody cuando multitrack cambia
+    useEffect(() => {
+        setTrackBody((prevState) => ({
+            ...prevState,
+            id: multitrack?.id || '',
+        }));
+    }, [multitrack]);
 
     const trackBodyHandler = (e) => {
         setTrackBody((prevState) => ({
@@ -154,20 +163,22 @@ export const BandPage = () => {
             [e.target.name]: e.target.value,
         }));
     };
+    
 
     const createTrack = async () => {
         try {
-            // const body = trackBody;
-            const body = {
-                "id": multitrack.id,
-                "track_name": "Una canción que hice",
-                "img_url": "https://img.freepik.com/premium-vector/vinyl-record-disc-hand-drawn-engraving-style-sketch-vector-illustration_666729-557.jpg",
-                "track_url": "https://actions.google.com/sounds/v1/science_fiction/alien_beam.ogg?hl=es-419"
-            }
+            // const multitrackId = multitrack?.id || '';
+            const body = trackBody;
+            // const body = {
+            //     "id": multitrack.id,
+            //     "track_name": "Una canción que hice",
+            //     "img_url": "https://img.freepik.com/premium-vector/vinyl-record-disc-hand-drawn-engraving-style-sketch-vector-illustration_666729-557.jpg",
+            //     "track_url": "https://actions.google.com/sounds/v1/science_fiction/alien_beam.ogg?hl=es-419"
+            // }
             const response = await createTrackCall(id, body, token);
             setTracks(response.data.data);
         } catch (error) {
-            console.error('Error creating new multitrack', error);
+            console.error('Error creating new multitrack', error.message, error.response);
         }
     };
 
@@ -193,8 +204,6 @@ export const BandPage = () => {
         // }, [id, createMultitracK]);
     }, []);
 
-
-
     const loginPage = () => {
         navigate('/login');
     }
@@ -203,10 +212,8 @@ export const BandPage = () => {
     console.log('id del band leader: ', bandPage?.band_leader);
     console.log('band member: ', isBandMember);
     console.log('multitrack: ', multitrack);
-    // if (multitrack) {
-    //     setMultiExist(true);
-    // }
     console.log('Hay multitrack: ', multiExist);
+
     return (
         <div className="bandPageDesign">
             <div className="bandPageContainer">
@@ -259,11 +266,35 @@ export const BandPage = () => {
                                             tracks={tracks}
                                         />
                                         <div>{isBandMember ?
-                                            (<div>Soy member
+                                            (<div>
+                                                <FieldInput2
+                                                    design={'inputReg'}
+                                                    type={"track_name"}
+                                                    name={"track_name"}
+                                                    placeholder={"Your track title..."}
+                                                    functionProp={trackBodyHandler}
+                                                // functionBlur={errorCheck}
+                                                />
+                                                  <FieldInput2
+                                                    design={'inputReg'}
+                                                    type={"img_url"}
+                                                    name={"img_url"}
+                                                    placeholder={"Add an image..."}
+                                                    functionProp={trackBodyHandler}
+                                                // functionBlur={errorCheck}
+                                                />
+                                                  <FieldInput2
+                                                    design={'inputReg'}
+                                                    type={"track_url"}
+                                                    name={"track_url"}
+                                                    placeholder={"Load a track..."}
+                                                    functionProp={trackBodyHandler}
+                                                // functionBlur={errorCheck}
+                                                />
                                                 <div onClick={createTrack} className="joinButton">Load Track</div>
                                             </div>
                                             ) : (
-                                                <div>no soy member</div>)}
+                                                <div>You must be a band member to load a track on our multitrack</div>)}
                                         </div>
                                     </div>
                                 )}
