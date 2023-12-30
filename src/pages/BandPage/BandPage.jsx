@@ -43,6 +43,15 @@ export const BandPage = () => {
 
     const [messageButton, setMessageButton] = useState(false);
     const [selectedMessageId, setSelectedMessageId] = useState(null);
+    const [trackCreated, setTrackCreated] = useState(false);
+
+    const [isMounted, setIsMounted] = useState(true);
+
+    useEffect(() => {
+        setIsMounted(true);
+        return () => setIsMounted(false);
+    }, []);
+
 
     const sendNewMessage = async (message) => {
         try {
@@ -145,7 +154,7 @@ export const BandPage = () => {
         }));
     };
 
-   const multitrackErrorHandler = ()=>{};
+    const multitrackErrorHandler = () => { };
 
     const [multiExist, setMultiExist] = useState();
     const createMultitracK = async () => {
@@ -169,7 +178,7 @@ export const BandPage = () => {
     });
 
     // poner errores... addError
-    const trackErrorHandler = ()=>{};
+    const trackErrorHandler = () => { };
 
     useEffect(() => {
         setTrackBody((prevState) => ({
@@ -188,14 +197,9 @@ export const BandPage = () => {
     const createTrack = async () => {
         try {
             const body = trackBody;
-            // const body = {
-            //     "id": multitrack.id,
-            //     "track_name": "Una canción que hice",
-            //     "img_url": "https://img.freepik.com/premium-vector/vinyl-record-disc-hand-drawn-engraving-style-sketch-vector-illustration_666729-557.jpg",
-            //     "track_url": "https://actions.google.com/sounds/v1/science_fiction/alien_beam.ogg?hl=es-419"
-            // }
             const response = await createTrackCall(id, body, token);
             setTracks(response.data.data);
+            setTrackCreated(true);
         } catch (error) {
             console.error('Error creating new multitrack', error.message, error.response);
         }
@@ -206,7 +210,6 @@ export const BandPage = () => {
             try {
                 const response = await getBandByParams(id);
                 const bandPageData = response.data.data.band;
-                // sólo un multitrack or banda en esta version
                 const multitrackData = response.data.data.multitracks?.[0]?.multitrack;
                 const tracksData = response.data.data.multitracks?.[0]?.tracks;
                 setBandPage(bandPageData);
@@ -219,9 +222,14 @@ export const BandPage = () => {
                 console.error('Error get bandpage---> ', error);
             }
         };
-        getBandPage();
-        // }, [id, createMultitracK]);
-    }, [tracks]);
+
+        if (isMounted && (trackCreated || !tracks)) {
+            getBandPage();
+            setTrackCreated(false);
+        }
+    }, [id, isMounted, trackCreated, tracks]);
+
+
 
     const loginPage = () => {
         navigate('/login');
@@ -262,7 +270,7 @@ export const BandPage = () => {
                                                     name={"project_title"}
                                                     placeholder={"Your project title..."}
                                                     functionProp={multitrackBodyHandler}
-                                                functionBlur={multitrackErrorHandler}
+                                                    functionBlur={multitrackErrorHandler}
                                                 />
                                                 <FieldInput2
                                                     design={'inputReg'}
@@ -270,7 +278,7 @@ export const BandPage = () => {
                                                     name={"img_url"}
                                                     placeholder={"Image link"}
                                                     functionProp={multitrackBodyHandler}
-                                                functionBlur={multitrackErrorHandler}
+                                                    functionBlur={multitrackErrorHandler}
                                                 />
                                                 <div onClick={createMultitracK} className="joinButton">Create Multitrack</div>
                                             </div>
@@ -292,7 +300,7 @@ export const BandPage = () => {
                                                     name={"track_name"}
                                                     placeholder={"Your track title..."}
                                                     functionProp={trackBodyHandler}
-                                                functionBlur={trackErrorHandler}
+                                                    functionBlur={trackErrorHandler}
                                                 />
                                                 <FieldInput2
                                                     design={'inputReg'}
@@ -300,7 +308,7 @@ export const BandPage = () => {
                                                     name={"img_url"}
                                                     placeholder={"Add an image..."}
                                                     functionProp={trackBodyHandler}
-                                                functionBlur={trackErrorHandler}
+                                                    functionBlur={trackErrorHandler}
                                                 />
                                                 <FieldInput2
                                                     design={'inputReg'}
@@ -308,7 +316,7 @@ export const BandPage = () => {
                                                     name={"track_url"}
                                                     placeholder={"Load a track..."}
                                                     functionProp={trackBodyHandler}
-                                                functionBlur={trackErrorHandler}
+                                                    functionBlur={trackErrorHandler}
                                                 />
                                                 <div onClick={createTrack} className="joinButton">Load Track</div>
                                             </div>
