@@ -1,0 +1,43 @@
+.bandMembersDesign {
+    height: 86vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    font-weight: lighter;
+    background: repeating-linear-gradient(
+      to right,
+      var(--green-col),
+      var(--green-col) 0.5em,
+      var(--white-col) 0.5em,
+      var(--white-col) 1.3em
+    );
+  }
+
+  .adminCard {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 2em;
+    align-items: center;
+    background-color: var(--calid-dark-col);
+    border-color: var(--white-col);
+    color: white;
+    border-width: 0.3em;
+    border-radius: 0.7em;
+    border-style: solid;
+    width: 16em;
+    height: 20em;
+    text-align: center;
+    box-shadow: var(--calid-dark-col) 1em 1.1em 0em 0em;
+    transition: 150ms;
+  }
+  
+  .adminCard:hover {
+    transform: scale(1.05);
+    box-shadow: var(--calid-dark-col) 1.8em 2.1em 0em 0em;
+    transition: 150ms;
+  }
