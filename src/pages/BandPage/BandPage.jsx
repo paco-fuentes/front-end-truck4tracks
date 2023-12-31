@@ -20,6 +20,7 @@ import { userData } from "../userTokenSlice";
 import { addMessage, setMessages } from "../bandMessagesSlice";
 import { FieldInput2 } from "../../common/FieldInput2/FieldInput2";
 import { jwtDecode } from "jwt-decode";
+import { FieldInput } from "../../common/FieldInput/FieldInput";
 
 export const BandPage = () => {
     const navigate = useNavigate()
@@ -194,16 +195,29 @@ export const BandPage = () => {
         }));
     };
 
+    const resetTrackInputs = () => {
+        console.log("Resetting track inputs");
+        setTrackBody({
+            id: '',
+            track_name: '',
+            img_url: '',
+            track_url: '',
+        });
+    };
+    
     const createTrack = async () => {
         try {
             const body = trackBody;
             const response = await createTrackCall(id, body, token);
             setTracks(response.data.data);
             setTrackCreated(true);
+            resetTrackInputs();
+            console.log("Track inputs reset successfully");
         } catch (error) {
             console.error('Error creating new multitrack', error.message, error.response);
         }
     };
+    
 
     useEffect(() => {
         const getBandPage = async () => {
@@ -298,27 +312,33 @@ export const BandPage = () => {
                                         />
                                         <div>{isBandMember ?
                                             (<div>
-                                                <FieldInput2
+                                                <FieldInput
                                                     design={'inputReg'}
                                                     type={"track_name"}
                                                     name={"track_name"}
                                                     placeholder={"Your track title..."}
+                                                    value={trackBody.track_name}  // Asegúrate de vincular el valor correctamente
+
                                                     functionProp={trackBodyHandler}
                                                     functionBlur={trackErrorHandler}
                                                 />
-                                                <FieldInput2
+                                                <FieldInput
                                                     design={'inputReg'}
                                                     type={"img_url"}
                                                     name={"img_url"}
                                                     placeholder={"Add an image..."}
                                                     functionProp={trackBodyHandler}
+                                                    value={trackBody.img_url}  // Asegúrate de vincular el valor correctamente
+
                                                     functionBlur={trackErrorHandler}
                                                 />
-                                                <FieldInput2
+                                                <FieldInput
                                                     design={'inputReg'}
                                                     type={"track_url"}
                                                     name={"track_url"}
                                                     placeholder={"Load a track..."}
+                                                    value={trackBody.track_url}  // Asegúrate de vincular el valor correctamente
+
                                                     functionProp={trackBodyHandler}
                                                     functionBlur={trackErrorHandler}
                                                 />
