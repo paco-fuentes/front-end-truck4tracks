@@ -235,6 +235,10 @@ export const BandPage = () => {
         navigate('/login');
     }
 
+    const goToBandMembers = () => {
+        navigate(`/bandmembers/${id}`)
+    }
+
     // console.log('mi current id: ', currentId);
     // console.log('id del band leader: ', bandPage?.band_leader);
     // console.log('band member: ', isBandMember);
@@ -253,13 +257,13 @@ export const BandPage = () => {
                                     <div>{bandPage.band_name}</div>
                                     <div>About: </div>
                                     <div>{bandPage.about}</div>
-                                    {(bandPage.band_leader === currentId) ? (<div>Soc el lider</div>) : (<div>No soc el LEADER</div>)}
+                                    {(bandPage.band_leader === currentId) ? (<div onClick={goToBandMembers}>Manage Members</div>) : (<div>No soc el LEADER</div>)}
                                 </div>
                             </div>
                             <div>
                                 {(typeof multiExist === 'undefined') && (
                                     <div>
-                                        {(bandPage.band_leader !== currentId) ? (
+                                        {((bandPage.band_leader !== currentId) || (!token)) ? (
                                             <div>You must be logued as band leader to create a multitrack
                                             </div>
                                         ) : (
