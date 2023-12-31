@@ -3,7 +3,7 @@ import "./BandMembers.css";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { userData } from "../userTokenSlice";
-import { getBandMembers } from "../../services/apiCalls";
+import { getBandMembers, kickBandMemberCall } from "../../services/apiCalls";
 
 export const BandMembers = () => {
     const userCredentialsRedux = useSelector(userData);
@@ -24,6 +24,18 @@ export const BandMembers = () => {
     }, []);
     // console.log(allUsers[0].user.username);
 
+    const kickMember = async (userId)=>{
+        try {
+            const body = {"user_id": userId, "band_id": id,}
+            const response = await kickBandMemberCall(body, token)
+            console.log(response.data.message);
+            const updatedUsers = allUsers.filter(user => user.user.id !== userId);
+            setAllUsers(updatedUsers);
+        } catch (error) {
+            console.error('Error kicking member:', error);
+        }
+    }
+
     return (
         <div className="bandMembersDesign">
             {allUsers ? (
@@ -35,7 +47,7 @@ export const BandMembers = () => {
                             {/* <div>Email: {user.email}</div>
                             <div>Active: {user.is_active ? 'yes' : 'no'}</div> */}
                         </div>
-                        {/* <div onClick={() => deleteUser(user.id)} className="buttonDeleteUser">Delete</div> */}
+                        <div onClick={() => kickMember(user.user.id)} className="buttonDeleteUser">Kick of the band</div>
                     </div>
                 ))
             ) : (

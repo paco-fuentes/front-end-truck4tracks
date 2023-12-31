@@ -95,6 +95,14 @@ export const getBandMembers = async (id, token) => {
   });
 };
 
+export const kickBandMemberCall = async (body, token) => {
+  return await axios.post(`${HOST_URL}/user/kickmember`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 export const checkIfBandMemberCall = async (id, token) => {
   return await axios.get(`${HOST_URL}/user/ismember/${id}`, {
     headers: {
