@@ -43,7 +43,7 @@ export const validator = (type, value) => {
         return "Write 8 characters at least";
       } else {
         //Checking the password format....
-        if (!/[\d()+-]/g.test(value)) {
+        if (!/[\d()+-]/.test(value)) {
           return "Invalid password format";
         } else {
           return true;
