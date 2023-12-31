@@ -43,6 +43,9 @@ export const Login = () => {
         }));
     }
 
+    const [modalMessage, setModalMessage] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
     // llamo a la api con el objeto loginBody y recupero los datos de la llamada
     const loginButton = () => {
         // console.log(loginBody);
@@ -52,16 +55,27 @@ export const Login = () => {
                 const currentToken = result.data.token;
                 console.log(currentToken);
                 dispatch(login({ credentials: currentToken }));
-                navigate('/');
+                setModalMessage(result.data.message)
+                    setShowModal(true);
+                    setTimeout(() => {
+                        setShowModal(false);
+                        navigate('/');
+                    }, 2000)
             })
             .catch(error => {
-                console.log(error.message);
+                console.log('respuesta del srver: ', error.message);
+                setModalMessage(error.message)
+                setShowModal(true);
+                setTimeout(() => {
+                    setShowModal(false);
+                }, 2000)
             });
     }
-
+    console.log('el usestate', modalMessage);
+    console.log('el shomodal state', showModal);
     return (
         <div className="loginDesign">
-            <div className="loginContainer">
+            {(!showModal)?(<div className="loginContainer">
                 <div className="fieldComp">
                     <FieldInput2
                         design={'inputLogin'}
@@ -93,7 +107,8 @@ export const Login = () => {
                     : <div className='errorMsg'>{userError.passwordError}</div>
                 }
 
-            </div>
+            </div>):(<div>adios: {modalMessage}</div>)}
+            
         </div>
     );
 };
