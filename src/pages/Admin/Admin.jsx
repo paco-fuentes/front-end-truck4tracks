@@ -13,7 +13,7 @@ export const Admin = () => {
         const getAllUsers = async () => {
             try {
                 const response = await getAllUsersCall(token);
-                setAllUsers(response.data.data)
+                setAllUsers(response.data.data);
             } catch (error) {
                 console.error('Error getting all users:', error);
             }
@@ -21,14 +21,20 @@ export const Admin = () => {
         getAllUsers();
     }, []);
 
+    const [modalMessages, setModalMessages] = useState({});
+    const [showModals, setShowModals] = useState({});
+
     const deleteUser = async (userId) => {
         try {
-            // agregar verificación antes de la llamada
             const response = await deleteUserByBodyIdCall(userId, token);
-            console.log(response.data.message);
-            // selecciona los que no sean el id selecionado
-            const updatedUsers = allUsers.filter(user => user.id !== userId);
-            setAllUsers(updatedUsers);
+            const updatedUsers = allUsers.filter((user) => user.id !== userId);
+            setModalMessages({ ...modalMessages, [userId]: response.data.message });
+            setShowModals({ ...showModals, [userId]: true });
+
+            setTimeout(() => {
+                setShowModals({ ...showModals, [userId]: false });
+                setAllUsers(updatedUsers);
+            }, 2000);
         } catch (error) {
             console.error('Error deleting user:', error);
         }
@@ -52,7 +58,11 @@ export const Admin = () => {
                                 <div>Updated: {updatedCreatedAt}</div>
                                 <div>Active: {user.is_active ? 'yes' : 'no'}</div>
                             </div>
-                            <div onClick={() => deleteUser(user.id)} className="buttonDeleteUser">Delete</div>
+                            {(!showModals[user.id]) ? (
+                                <div onClick={() => deleteUser(user.id)} className="buttonDeleteUser">Delete</div>
+                            ) : (
+                                <div>adios: {modalMessages[user.id]}</div>
+                            )}
                         </div>
                     );
                 })
