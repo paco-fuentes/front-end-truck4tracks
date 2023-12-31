@@ -30,11 +30,25 @@ export const BandMembers = () => {
             const response = await kickBandMemberCall(body, token)
             console.log(response.data.message);
             const updatedUsers = allUsers.filter(user => user.user.id !== userId);
-            setAllUsers(updatedUsers);
+            setModalMessage(response.data.message)
+                    setShowModal(true);
+                    setTimeout(() => {
+                        setShowModal(false);
+                        setAllUsers(updatedUsers);
+                    }, 2000)
+            
         } catch (error) {
             console.error('Error kicking member:', error);
+            setModalMessage(error.message)
+                setShowModal(true);
+                setTimeout(() => {
+                    setShowModal(false);
+                }, 2000)
         }
     }
+
+    const [modalMessage, setModalMessage] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <div className="bandMembersDesign">
@@ -47,7 +61,8 @@ export const BandMembers = () => {
                             {/* <div>Email: {user.email}</div>
                             <div>Active: {user.is_active ? 'yes' : 'no'}</div> */}
                         </div>
-                        <div onClick={() => kickMember(user.user.id)} className="buttonDeleteUser">Kick of the band</div>
+                        {(!showModal)?(<div onClick={() => kickMember(user.user.id)} className="buttonDeleteUser">Kick of the band</div>):(<div>adios: {modalMessage}</div>)}
+                        
                     </div>
                 ))
             ) : (
