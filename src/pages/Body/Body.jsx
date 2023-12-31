@@ -6,6 +6,7 @@ import { Login } from "../Login/Login"
 import { Bands } from "../Bands/Bands"
 import { BandPage } from "../BandPage/BandPage"
 import { Admin } from "../Admin/Admin"
+import { BandMembers } from "../BandMembers/BandMembers"
 
 export const Body = () => {
     return (
@@ -18,6 +19,7 @@ export const Body = () => {
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/allbands" element={<Bands />} />
                 <Route path="/band/:id" element={<BandPage />} />
+                <Route path="/bandmembers/:id" element={<BandMembers />} />
                 <Route path="/admin" element={<Admin />} />
             </Routes>
         </>
