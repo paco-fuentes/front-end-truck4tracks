@@ -21,7 +21,8 @@ export const UserProfile = () => {
     });
 
     console.log(newBand);
-
+    const [modalMessage, setModalMessage] = useState('');
+    const [showModal, setShowModal] = useState(false);
     const createNewBand = async () => {
         try {
             const body = {
@@ -30,10 +31,21 @@ export const UserProfile = () => {
             };
             const response = await createBandCall(body, token);
             setNewBand(response.data);
-            const newBandId=response.data.band.id
-            navigate(`/band/${newBandId}`)
+            const newBandId = response.data.band.id
+            setModalMessage(response.data.message)
+                    setShowModal(true);
+                    setTimeout(() => {
+                        setShowModal(false);
+                        navigate(`/band/${newBandId}`)
+                    }, 2000)
+
         } catch (error) {
             console.error(`Error creating band: ${error}`);
+            setModalMessage(error.message)
+            setShowModal(true);
+            setTimeout(() => {
+                setShowModal(false);
+            }, 2000)
         }
     };
 
@@ -190,30 +202,35 @@ export const UserProfile = () => {
                     : <div className='errorMsg'>{profileError.emailError}</div>
                 }
             </div>
-            <div className='profileContainer'>
-                <div>Start a new band:</div>
-                <FieldInput
-                    disabled={''}
-                    design={''}
-                    type={"text"}
-                    name={"band_name"}
-                    placeholder={"Your new band name"}
-                    value={newBand.band_name}
-                    functionProp={(e) => functionHandlerBand(e, "band_name")}
-                    functionBlur={errorCheck}
-                />
-                <FieldInput
-                    disabled={''}
-                    design={''}
-                    type={"text"}
-                    name={"about"}
-                    placeholder={"About your band..."}
-                    value={newBand.about}
-                    functionProp={(e) => functionHandlerBand(e, "about")}
-                    functionBlur={errorCheck}
-                />
-                <div onClick={createNewBand} className='profileButton'>Create</div>
-            </div>
+            {(!showModal) ? (
+                <div className='profileContainer'>
+                    <div>Start a new band:</div>
+                    <FieldInput
+                        disabled={''}
+                        design={''}
+                        type={"text"}
+                        name={"band_name"}
+                        placeholder={"Your new band name"}
+                        value={newBand.band_name}
+                        functionProp={(e) => functionHandlerBand(e, "band_name")}
+                        functionBlur={errorCheck}
+                    />
+                    <FieldInput
+                        disabled={''}
+                        design={''}
+                        type={"text"}
+                        name={"about"}
+                        placeholder={"About your band..."}
+                        value={newBand.about}
+                        functionProp={(e) => functionHandlerBand(e, "about")}
+                        functionBlur={errorCheck}
+                    />
+                    <div onClick={createNewBand} className='profileButton'>Create</div>
+                </div>)
+                :
+                (<div>adios: {modalMessage}</div>)
+            }
+
         </div>
     );
 };
