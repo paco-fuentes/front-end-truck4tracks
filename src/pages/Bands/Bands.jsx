@@ -1,7 +1,7 @@
+import "./Bands.css";
 import { useEffect, useState } from "react";
 import { getAllBands } from "../../services/apiCalls";
 import { BandCard } from "../../common/BandCard/BandCard";
-import "./Bands.css";
 
 export const Bands = () => {
     const [bands, setBands] = useState([])
@@ -12,7 +12,7 @@ export const Bands = () => {
                     const bandsData = response.data.data;
                     setBands(bandsData);
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => console.log(error.message));
         }
     }, [bands]);
 
@@ -20,12 +20,11 @@ export const Bands = () => {
         "--green-col",
         "--pink-col",
         "--pink-d-col",
-        // "--white-col",
-        // "--yellow-col",
+        "--blue-d-col",
+        "--red-col",
         "--calid-dark-col",
         "--blue-col",
-      ];
-      
+    ];
 
     return (
         <div className="bandsDesign">
@@ -44,7 +43,10 @@ export const Bands = () => {
                     </div>
                 ))
             ) : (
-                bands.length === 0 && <p>Loading bands...</p>
+                bands.length === 0 &&
+                <div className="loadCont">
+                    <div className="loadingModalContainer">Loading bands...</div>
+                </div>
             )}
         </div>
     );

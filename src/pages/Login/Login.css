@@ -9,8 +9,8 @@
   flex-direction: column;
   background: repeating-linear-gradient(
     to right,
-    var(--blue-col),
-    var(--blue-col) 0.5em,
+    var(--blue-d-col),
+    var(--blue-d-col) 0.5em,
     var(--white-col) 0.5em,
     var(--white-col) 1.3em
   );

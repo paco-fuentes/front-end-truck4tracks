@@ -9,8 +9,8 @@
   flex-direction: column;
   background: repeating-linear-gradient(
     to right,
-    var(--green-col),
-    var(--green-col) 0.5em,
+    var(--pink-d-col),
+    var(--pink-d-col) 0.5em,
     var(--white-col) 0.5em,
     var(--white-col) 1.3em
   );
@@ -19,7 +19,7 @@
 .regContainer {
   height: 20em;
   width: 15em;
-  background-color: var(--pink-d-col);
+  background-color: var(--red-col);
   display: flex;
   align-items: center;
   flex-direction: column;
