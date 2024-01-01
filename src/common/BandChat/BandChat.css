@@ -21,7 +21,7 @@
 }
 
 .message {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   margin: 0.5em;
   cursor: pointer;
@@ -29,7 +29,7 @@
 }
 
 .message img {
-  width: 50px;
+  max-height: 50px;
   margin-right: 0.5em;
   border-radius: 50%;
 }

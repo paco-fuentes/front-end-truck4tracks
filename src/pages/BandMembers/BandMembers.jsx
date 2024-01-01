@@ -59,8 +59,8 @@ export const BandMembers = () => {
         <div className="bandMembersDesign">
             {allUsers ? (
                 allUsers.map((user) => (
-                    <div key={user.user.id} className="adminCard">
-                        <img src={`https://unavatar.io/${user.user.username}`} width="100" className="imgAdminCard" />
+                    <div key={user.user.id} className="memberCard">
+                        <img src={`https://unavatar.io/github/${user.user.username}`} width="100" className="imgAdminCard" />
                         <div className="infoUsersAdmin">
                             <div>{user.user.username}</div>
                         </div>

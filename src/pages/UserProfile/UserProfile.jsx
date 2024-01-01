@@ -142,7 +142,7 @@ export const UserProfile = () => {
             <div className='profileContainer'>
                 <div className='profileInfo' >
                 <div>
-                    <img src={`https://unavatar.io/${profile.username}`} width="200" />
+                    <img src={`https://unavatar.io/github/${profile.username}`} width="200" />
                 </div>
                     <div>username:</div>
                     <FieldInput

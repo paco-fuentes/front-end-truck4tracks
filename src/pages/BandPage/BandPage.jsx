@@ -25,6 +25,7 @@ import { FieldInput } from "../../common/FieldInput/FieldInput";
 export const BandPage = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
+    const { id } = useParams();
     const userCredentialsRedux = useSelector(userData);
     const token = userCredentialsRedux.credentials;
     let currentId;
@@ -35,24 +36,19 @@ export const BandPage = () => {
 
     // const bandMessages = useSelector((state) => state.bandMessages);
     const [isBandMember, setIsBandMember] = useState(false);
-
     const [bandPage, setBandPage] = useState(null);
     const [multitrack, setMultitrack] = useState({});
     const [tracks, setTracks] = useState(null);
     const [messages, setMessages] = useState(null);
-    const { id } = useParams();
-
     const [messageButton, setMessageButton] = useState(false);
     const [selectedMessageId, setSelectedMessageId] = useState(null);
     const [trackCreated, setTrackCreated] = useState(false);
-
     const [isMounted, setIsMounted] = useState(true);
 
     useEffect(() => {
         setIsMounted(true);
         return () => setIsMounted(false);
     }, []);
-
 
     const sendNewMessage = async (message) => {
         try {
@@ -61,14 +57,11 @@ export const BandPage = () => {
             setMessageButton(true)
             const response = await postMessage(id, body, token);
             dispatch(addMessage(response.data.message));
-            // setSelectedMessageId(message);
-
         } catch (error) {
             console.error('Error send message --> ', error);
         }
     };
 
-    // console.log('mi selected message: ', selectedMessageId);
     useEffect(() => {
         const deleteSelectedMessage = async () => {
             try {
@@ -86,7 +79,6 @@ export const BandPage = () => {
         deleteSelectedMessage();
     }, [selectedMessageId]);
 
-
     useEffect(() => {
         const getMessages = async () => {
             try {
@@ -97,7 +89,6 @@ export const BandPage = () => {
             }
         };
         getMessages();
-        // }, [dispatch, sendNewMessage, id]);
     }, [dispatch, id, messageButton, messages]);
 
     if (messageButton) {
@@ -158,6 +149,7 @@ export const BandPage = () => {
     const multitrackErrorHandler = () => { };
 
     const [multiExist, setMultiExist] = useState();
+
     const createMultitracK = async () => {
         try {
             const body = multitrackBody;
@@ -178,7 +170,6 @@ export const BandPage = () => {
         track_url: '',
     });
 
-    // poner errores... addError
     const trackErrorHandler = () => { };
 
     useEffect(() => {
@@ -204,7 +195,7 @@ export const BandPage = () => {
             track_url: '',
         });
     };
-    
+
     const createTrack = async () => {
         try {
             const body = trackBody;
@@ -217,7 +208,6 @@ export const BandPage = () => {
             console.error('Error creating new multitrack', error.message, error.response);
         }
     };
-    
 
     useEffect(() => {
         const getBandPage = async () => {
@@ -243,8 +233,6 @@ export const BandPage = () => {
         }
     }, [id, isMounted, trackCreated, tracks]);
 
-
-
     const loginPage = () => {
         navigate('/login');
     }
@@ -252,12 +240,6 @@ export const BandPage = () => {
     const goToBandMembers = () => {
         navigate(`/bandmembers/${id}`)
     }
-
-    // console.log('mi current id: ', currentId);
-    // console.log('id del band leader: ', bandPage?.band_leader);
-    // console.log('band member: ', isBandMember);
-    // console.log('multitrack: ', multitrack);
-    // console.log('Hay multitrack: ', multiExist);
 
     return (
         <div className="bandPageDesign">
@@ -271,7 +253,18 @@ export const BandPage = () => {
                                     <div>{bandPage.band_name}</div>
                                     <div>About: </div>
                                     <div>{bandPage.about}</div>
-                                    {(bandPage.band_leader === currentId) ? (<div onClick={goToBandMembers}>Manage Members</div>) : (<div>No soc el LEADER</div>)}
+                                    {(bandPage.band_leader === currentId) ? (<div className="joinButton" onClick={goToBandMembers}>Manage Members</div>) : ''}
+                                    {(!token) ? (
+                                        <div>
+                                            <div className="joinButton" onClick={loginPage}>Login</div>
+                                        </div>
+                                    ) : (<div>
+                                        {!isBandMember ? (
+                                            <div className="joinButton" onClick={joinBandButton}>Join</div>
+                                        ) : (
+                                            <div className="joinButton" onClick={leaveBandButton}>Leave</div>
+                                        )}
+                                    </div>)}
                                 </div>
                             </div>
                             <div>
@@ -317,7 +310,7 @@ export const BandPage = () => {
                                                     type={"track_name"}
                                                     name={"track_name"}
                                                     placeholder={"Your track title..."}
-                                                    value={trackBody.track_name}  // Asegúrate de vincular el valor correctamente
+                                                    value={trackBody.track_name}
 
                                                     functionProp={trackBodyHandler}
                                                     functionBlur={trackErrorHandler}
@@ -328,7 +321,7 @@ export const BandPage = () => {
                                                     name={"img_url"}
                                                     placeholder={"Add an image..."}
                                                     functionProp={trackBodyHandler}
-                                                    value={trackBody.img_url}  // Asegúrate de vincular el valor correctamente
+                                                    value={trackBody.img_url}
 
                                                     functionBlur={trackErrorHandler}
                                                 />
@@ -337,7 +330,7 @@ export const BandPage = () => {
                                                     type={"track_url"}
                                                     name={"track_url"}
                                                     placeholder={"Load a track..."}
-                                                    value={trackBody.track_url}  // Asegúrate de vincular el valor correctamente
+                                                    value={trackBody.track_url}
 
                                                     functionProp={trackBodyHandler}
                                                     functionBlur={trackErrorHandler}
@@ -351,17 +344,7 @@ export const BandPage = () => {
                                 )}
                             </div>
                         </div>
-                        {(!token) ? (
-                            <div>
-                                <div className="joinButton" onClick={loginPage}>Login</div>
-                            </div>
-                        ) : (<div>
-                            {!isBandMember ? (
-                                <div className="joinButton" onClick={joinBandButton}>Join</div>
-                            ) : (
-                                <div className="joinButton" onClick={leaveBandButton}>Leave</div>
-                            )}
-                        </div>)}
+
                         {(isBandMember) ?
                             (<div className="chatCont">
                                 {messages && (

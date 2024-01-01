@@ -50,7 +50,7 @@ export const Admin = () => {
                     const updatedCreatedAt = `${updatedAtDate.getDate()}/${updatedAtDate.getMonth() + 1}/${updatedAtDate.getFullYear()} ${updatedAtDate.getHours()}:${String(updatedAtDate.getMinutes()).padStart(2, '0')}`;
                     return (
                         <div key={user.id} className="adminCard">
-                            <img src={`https://unavatar.io/${user.username}`} width="100" className="imgAdminCard" />
+                            <img src={`https://unavatar.io/github/${user.username}`} width="100" className="imgAdminCard" />
                             <div className="infoUsersAdmin">
                                 <div>Username: {user.username}</div>
                                 <div>Email: {user.email}</div>

@@ -6,8 +6,9 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-direction: column;
+    flex-wrap: wrap;
     font-weight: lighter;
+    overflow-y: auto;
     background: repeating-linear-gradient(
       to right,
       var(--green-col),
@@ -17,7 +18,7 @@
     );
   }
 
-  .adminCard {
+  .memberCard {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -36,7 +37,7 @@
     transition: 150ms;
   }
   
-  .adminCard:hover {
+  .memberCard:hover {
     transform: scale(1.05);
     box-shadow: var(--calid-dark-col) 1.8em 2.1em 0em 0em;
     transition: 150ms;
