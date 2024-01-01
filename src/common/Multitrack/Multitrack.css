@@ -1,32 +1,41 @@
 .multitrackCard {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: var(--yellow-col);
   border-color: rgb(0, 0, 0);
   border-width: 0.2;
   border-style: solid;
   border-radius: 0.7em;
-  width: 44vw;
-  height: 30vh;
+  width: 35em;
+  height: fit-content;
+  max-height: 22em;
   font-weight: lighter;
   text-align: center;
-  justify-content: center;
-  align-items: center;
   box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .multiInfo {
   display: flex;
+  height: 6em;
+  width: 100%;
   flex-direction: row;
   justify-content: flex-start;
-  background-color: var(--yellow-col);
+  align-items: center;
+  margin-left: 1em;
 }
 
 .multiInfo img {
-  border-radius: 10%;
-  width: 20%;
+  border-radius: 0.7em;
+  width: 5em;
+  height: 5em;
+  object-fit: cover;
+  margin-right: 1em;
+}
+
+.scrollMultiCont {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .playerDesign {
