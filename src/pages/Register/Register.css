@@ -88,3 +88,28 @@
   cursor: pointer;
   transition: 150ms;
 }
+
+.regModalContainer {
+  height: max-content;
+  width: max-content;
+  color: white;
+  padding: 3em;
+  background-color: var(--pink-d-col);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  border-width: 0.3em;
+  border-radius: 0.7em;
+  border-style: solid;
+  border-color: white;
+  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
+  transition: 150ms;
+}
+
+.regModalContainer:hover {
+  box-shadow: var(--calid-dark-col) 1.8em 2.1em 0em 0em;
+  transform: scale(1.1);
+  transition: 150ms;
+  border-width: 0.5em;
+}

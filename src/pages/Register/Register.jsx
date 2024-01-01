@@ -21,14 +21,12 @@ export const Register = () => {
         }));
     };
 
-    // manejo de errores
     const [userError, setUserError] = useState({
         username: '',
         emailError: "",
         passwordError: ""
     })
 
-    // manejo de errores
     const errorCheck = (e) => {
         let error = "";
         error = validator(e.target.name, e.target.value);
@@ -45,7 +43,6 @@ export const Register = () => {
         registerCall(userBody)
             .then(
                 result => {
-                    // console.log('respuesta del srver: ', result.data.message);
                     setModalMessage(result.data.message)
                     setShowModal(true);
                     setTimeout(() => {
@@ -55,20 +52,17 @@ export const Register = () => {
                 }
             )
             .catch(error => {
-                // console.log('respuesta del srver: ', error.message);
                 setModalMessage(error.message)
                 setShowModal(true);
                 setTimeout(() => {
                     setShowModal(false);
-                }, 2000)});
+                }, 2000)
+            });
     }
-
-    console.log('el usestate', modalMessage);
-    console.log('el shomodal state', showModal);
 
     return (
         <div className='regDesign'>
-            {(!showModal)?(<div className='regContainer '>
+            {(!showModal) ? (<div className='regContainer '>
                 <div className="fieldComp">
                     <FieldInput2
                         design={'inputReg'}
@@ -111,8 +105,8 @@ export const Register = () => {
                     ? ""
                     : <div className='errorMsg'>{userError.passwordError}</div>
                 }
-            </div>):(<div>adios: {modalMessage}</div>)}
-            
+            </div>) : (<div className='regModalContainer'>{modalMessage}</div>)}
+
         </div>
     );
 };
