@@ -173,11 +173,11 @@ export const UserProfile = () => {
                     <select
                         name="activity-profile"
                         id="activity-profile"
-                        value={profile.activity.activity}
+                        value={profile.activity.id}
                         onChange={(e) => setProfile({ ...profile, activity: e.target.value })}
                     >
                         {activities && activities.map((activity) => (
-                            <option key={activity.id} value={activity.activity}>
+                            <option key={activity.id} value={activity.id}>
                                 {activity.activity}
                             </option>
                         ))}
