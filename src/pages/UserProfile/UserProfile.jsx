@@ -1,10 +1,10 @@
+import './UserProfile.css'
 import { useEffect, useState } from 'react';
 import { createBandCall, getAllActivitiesCall, profileCall, updateProfileCall } from '../../services/apiCalls';
 import { useSelector } from 'react-redux';
 import { userData } from '../userTokenSlice';
 import { FieldInput } from '../../common/FieldInput/FieldInput';
 import { validator } from '../../services/useful';
-import './UserProfile.css'
 import { useNavigate } from 'react-router-dom';
 
 export const UserProfile = () => {
@@ -20,7 +20,6 @@ export const UserProfile = () => {
         img_url: '',
     });
 
-    console.log(newBand);
     const [modalMessage, setModalMessage] = useState('');
     const [showModal, setShowModal] = useState(false);
     const createNewBand = async () => {
@@ -33,11 +32,11 @@ export const UserProfile = () => {
             setNewBand(response.data);
             const newBandId = response.data.band.id
             setModalMessage(response.data.message)
-                    setShowModal(true);
-                    setTimeout(() => {
-                        setShowModal(false);
-                        navigate(`/band/${newBandId}`)
-                    }, 2000)
+            setShowModal(true);
+            setTimeout(() => {
+                setShowModal(false);
+                navigate(`/band/${newBandId}`)
+            }, 2000)
 
         } catch (error) {
             console.error(`Error creating band: ${error}`);
@@ -95,7 +94,6 @@ export const UserProfile = () => {
     const [isEnabled, setIsEnabled] = useState(true);
 
     useEffect(() => {
-        // manejar si hay o no hay datos
         if (userProfileData && userProfileData.data) {
             const { username, email, activity, img_url } = userProfileData.data;
             setProfile({
@@ -139,13 +137,11 @@ export const UserProfile = () => {
         }
     };
 
-
-
     return (
         <div className='profileDesign'>
             <div className='profileContainer'>
                 <div className='profileInfo' >
-                    <div>User Profile:</div>
+                    <div>username:</div>
                     <FieldInput
                         disabled={isEnabled}
                         design={`inputDesign ${profileError.usernameError !== "" ? "inputDesignError" : ""
@@ -203,9 +199,9 @@ export const UserProfile = () => {
                 }
             </div>
             {(!showModal) ? (
-                <div className='profileContainer'>
-                    <div>Start a new band:</div>
-                    <FieldInput
+                <div className='profileBandContainer'>
+                    <div><strong>Start a new band: </strong></div>
+                    Band name: <FieldInput
                         disabled={''}
                         design={''}
                         type={"text"}
@@ -215,6 +211,7 @@ export const UserProfile = () => {
                         functionProp={(e) => functionHandlerBand(e, "band_name")}
                         functionBlur={errorCheck}
                     />
+                    Abot your new band:
                     <FieldInput
                         disabled={''}
                         design={''}
@@ -228,9 +225,8 @@ export const UserProfile = () => {
                     <div onClick={createNewBand} className='profileButton'>Create</div>
                 </div>)
                 :
-                (<div>adios: {modalMessage}</div>)
+                (<div className='newBandModalContainer'>{modalMessage}</div>)
             }
-
         </div>
     );
 };
