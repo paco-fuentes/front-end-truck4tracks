@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   overflow-y: auto;
   background: repeating-linear-gradient(
     to right,
@@ -19,7 +19,7 @@
 
 .bandPageContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 }
@@ -27,20 +27,21 @@
 .bandPageCompCont {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   width: 80vw;
-  margin: 2em;
+  margin-top: 1em;
 }
 
 .bandInfoContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background-color: var(--pink-col);
-  width: fit-content;
-  height: fit-content;
+  flex-direction: row;
+  background-color: var(--blue-col);
+  color: white;
+  width: 36em;
+  height: 24em;
   text-align: left;
   border-style: solid;
   border-color: black;
@@ -52,12 +53,12 @@
 .bandInfoContainer img {
   width: 15vw;
   border-radius: 1em;
-  margin-top: 2em;
+  margin: 2em;
+  border-style: solid 0.7;
 }
 
 .chatCont {
-  border-radius: 0.7em;
-  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
+  margin-bottom: 4em;
 }
 
 .textBox {
@@ -76,6 +77,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1em;
   transition: 150ms;
 }
 
@@ -104,4 +106,47 @@
   color: black;
   background-color: crimson;
   cursor: pointer;
+}
+
+.multiLoadCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 2em;
+}
+
+.loadTrackCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: var(--pink-col);
+  width: 44em;
+  height: 4em;
+  margin-top: 2em;
+  text-align: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.2;
+  border-radius: 0.7em;
+  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
+}
+
+.joinChatCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: var(--green-col);
+  width: 80vw;
+  height: 18em;
+  margin: 4em;
+  margin-top: 2em;
+  text-align: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.2;
+  border-radius: 0.7em;
+  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
 }

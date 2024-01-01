@@ -22,7 +22,6 @@ export const Bands = () => {
         "--pink-d-col",
         "--blue-d-col",
         "--red-col",
-        "--calid-dark-col",
         "--blue-col",
     ];
 

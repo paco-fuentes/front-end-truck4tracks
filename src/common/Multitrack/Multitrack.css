@@ -7,9 +7,9 @@
   border-width: 0.2;
   border-style: solid;
   border-radius: 0.7em;
-  width: 35em;
+  width: 44em;
   height: fit-content;
-  max-height: 22em;
+  max-height: 18em;
   font-weight: lighter;
   text-align: center;
   box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;

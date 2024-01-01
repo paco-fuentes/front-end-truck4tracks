@@ -9,6 +9,8 @@
   font-weight: lighter;
   width: 80vw;
   height: 20em;
+  border-radius: 0.7em;
+  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
 }
 
 .messageContainer {
@@ -21,7 +23,7 @@
 }
 
 .message {
-  /* display: flex; */
+  display: flex;
   align-items: center;
   margin: 0.5em;
   cursor: pointer;

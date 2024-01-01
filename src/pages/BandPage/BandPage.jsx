@@ -271,7 +271,7 @@ export const BandPage = () => {
                                 {(typeof multiExist === 'undefined') && (
                                     <div>
                                         {((bandPage.band_leader !== currentId) || (!token)) ? (
-                                            <div>You must be logued as band leader to create a multitrack
+                                            <div className="loadTrackCont">You must be logued as band leader to create a multitrack
                                             </div>
                                         ) : (
                                             <div className="fieldComp">
@@ -297,54 +297,52 @@ export const BandPage = () => {
                                     </div>
                                 )}
                                 {(multiExist === true) && (
-                                    <div>
+                                    <div className="multiLoadCont">
                                         <Multitrack
                                             title={multitrack.project_title}
                                             img={multitrack.img_url}
                                             tracks={tracks}
                                         />
                                         <div>{isBandMember ?
-                                            (<div>
-                                                <FieldInput
-                                                    design={'inputReg'}
-                                                    type={"track_name"}
-                                                    name={"track_name"}
-                                                    placeholder={"Your track title..."}
-                                                    value={trackBody.track_name}
+                                            (
+                                                <div className="loadTrackCont">
+                                                    <FieldInput
+                                                        design={'inputReg'}
+                                                        type={"track_name"}
+                                                        name={"track_name"}
+                                                        placeholder={"Your track title..."}
+                                                        value={trackBody.track_name}
 
-                                                    functionProp={trackBodyHandler}
-                                                    functionBlur={trackErrorHandler}
-                                                />
-                                                <FieldInput
-                                                    design={'inputReg'}
-                                                    type={"img_url"}
-                                                    name={"img_url"}
-                                                    placeholder={"Add an image..."}
-                                                    functionProp={trackBodyHandler}
-                                                    value={trackBody.img_url}
-
-                                                    functionBlur={trackErrorHandler}
-                                                />
-                                                <FieldInput
-                                                    design={'inputReg'}
-                                                    type={"track_url"}
-                                                    name={"track_url"}
-                                                    placeholder={"Load a track..."}
-                                                    value={trackBody.track_url}
-
-                                                    functionProp={trackBodyHandler}
-                                                    functionBlur={trackErrorHandler}
-                                                />
-                                                <div onClick={createTrack} className="joinButton">Load Track</div>
-                                            </div>
+                                                        functionProp={trackBodyHandler}
+                                                        functionBlur={trackErrorHandler}
+                                                    />
+                                                    <FieldInput
+                                                        design={'inputReg'}
+                                                        type={"img_url"}
+                                                        name={"img_url"}
+                                                        placeholder={"Add an image..."}
+                                                        functionProp={trackBodyHandler}
+                                                        value={trackBody.img_url}
+                                                        functionBlur={trackErrorHandler}
+                                                    />
+                                                    <FieldInput
+                                                        design={'inputReg'}
+                                                        type={"track_url"}
+                                                        name={"track_url"}
+                                                        placeholder={"Load a track..."}
+                                                        value={trackBody.track_url}
+                                                        functionProp={trackBodyHandler}
+                                                        functionBlur={trackErrorHandler}
+                                                    />
+                                                    <div onClick={createTrack} className="joinButton">Load Track</div>
+                                                </div>
                                             ) : (
-                                                <div>You must be a band member to load a track on our multitrack</div>)}
+                                                <div className="loadTrackCont">You must be a band member to load a track on our multitrack</div>)}
                                         </div>
                                     </div>
                                 )}
                             </div>
                         </div>
-
                         {(isBandMember) ?
                             (<div className="chatCont">
                                 {messages && (
@@ -356,8 +354,8 @@ export const BandPage = () => {
                                     />
                                 )}
                             </div>) : (
-                                <div>
-                                    Join band to chat with the band
+                                <div className="joinChatCont">
+                                    Join the band to chat with the band
                                 </div>
                             )}
                     </>
