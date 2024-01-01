@@ -61,7 +61,7 @@ export const UserProfile = () => {
                 const response = await profileCall(token);
                 setUserProfileData(response.data);
             } catch (error) {
-                console.error('Error al obtener el perfil:', error);
+                console.error('Error al obtener el perfil:', error.message);
             }
         };
         getProfile();
@@ -73,7 +73,7 @@ export const UserProfile = () => {
                 const response = await getAllActivitiesCall();
                 setActivities(response.data.data);
             } catch (error) {
-                console.error('Error al obtener las actividades:', error);
+                console.error('Error al obtener las actividades:', error.message);
             }
         }
         allActivities();
@@ -133,7 +133,7 @@ export const UserProfile = () => {
             setIsEnabled(true);
             setUserProfileData(response.data.data);
         } catch (error) {
-            console.error(`Error al actualizar el perfil ${error}`);
+            console.error(`Error al actualizar el perfil ${error.message}`);
         }
     };
 
@@ -141,6 +141,9 @@ export const UserProfile = () => {
         <div className='profileDesign'>
             <div className='profileContainer'>
                 <div className='profileInfo' >
+                <div>
+                    <img src={`https://unavatar.io/${profile.username}`} width="200" />
+                </div>
                     <div>username:</div>
                     <FieldInput
                         disabled={isEnabled}
@@ -178,9 +181,6 @@ export const UserProfile = () => {
                             </option>
                         ))}
                     </select>
-                </div>
-                <div>
-                    <img src={`https://unavatar.io/${profile.username}`} width="200" />
                 </div>
                 <div>
                     {
