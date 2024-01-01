@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import "./BandChat.css";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { userData } from "../../pages/userTokenSlice";
 import { jwtDecode } from "jwt-decode";
@@ -12,7 +12,7 @@ export const BandChat = ({ messages, design, placeholder, onSendMessage, onSendB
         const decToken = token ? jwtDecode(token) : null;
         currentUserId = decToken?.id;
     }
-    // console.log('mi user id de ahora', currentUserId);
+
     const [inputMessage, setInputMessage] = useState('');
     const [hoveredMessageId, setHoveredMessageId] = useState(null);
 
@@ -28,7 +28,6 @@ export const BandChat = ({ messages, design, placeholder, onSendMessage, onSendB
     };
 
     const handleUserMessageClick = (id) => {
-        // console.log('id del mensaje: ', id);
         onSendButtonClick(id);
     };
 
@@ -49,18 +48,19 @@ export const BandChat = ({ messages, design, placeholder, onSendMessage, onSendB
                         <div
                             key={id}
                             className="message"
-                            // onClick={() => handleUserMessageClick(message.id)}
                             onMouseEnter={() => handleMouseEnter(message.id)}
                             onMouseLeave={handleMouseLeave}
                         >
-                            <div>
+                            <div className="userAndTxt">
                                 <img src={`https://unavatar.io/${message.user.username}`} width="50" alt="user image" />
+                                <div >
+                                    <div className="username">{message.user.username}</div>
+                                    <div className="txtMessage">{message.message}</div>
+                                </div>
                             </div>
                             <div className="userMessage">
-                                <div className="username">{message.user.username}</div>
-                                <div className="txtMessage">{message.message}</div>
                                 {(hoveredMessageId === message.id && currentUserId === message.user.id) && (
-                                    <button onClick={() => handleUserMessageClick(message.id)}>Enviar</button>
+                                    <div className="delMessageButton" onClick={() => handleUserMessageClick(message.id)}>Delete</div>
                                 )}
                             </div>
                         </div>
