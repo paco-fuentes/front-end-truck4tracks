@@ -61,13 +61,13 @@ export const Admin = () => {
                             {(!showModals[user.id]) ? (
                                 <div onClick={() => deleteUser(user.id)} className="buttonDeleteUser">Delete</div>
                             ) : (
-                                <div>adios: {modalMessages[user.id]}</div>
+                                <div>{modalMessages[user.id]}</div>
                             )}
                         </div>
                     );
                 })
             ) : (
-                allUsers.length === 0 && <div>Waiting for users retrieving ... </div>
+                allUsers.length === 0 && <div className="loginModalContainer">Waiting for users retrieving ... </div>
             )}
         </div>
     );

@@ -67,13 +67,13 @@ export const BandMembers = () => {
                         {(!showModal[user.user.id]) ? (
                             <div onClick={() => kickMember(user.user.id)} className="buttonDeleteUser">Kick of the band</div>
                         ) : (
-                            <div>adios: {modalMessage[user.user.id]}</div>
+                            <div>{modalMessage[user.user.id]}</div>
                         )}
 
                     </div>
                 ))
             ) : (
-                allUsers.length === 0 && <div>Waiting for users retrieving ... </div>
+                allUsers.length === 0 && <div className="loginModalContainer">Waiting for users retrieving ... </div>
             )}
         </div>
     );
