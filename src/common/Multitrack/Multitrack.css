@@ -54,6 +54,10 @@
   flex-grow: 1;
   text-align: left;
   border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  margin-right: 1em;
+  margin-left: 1em;
 }
 
 .trackTitle {

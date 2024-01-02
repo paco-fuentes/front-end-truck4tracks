@@ -27,6 +27,8 @@
   border-width: 0.2;
   border-style: solid;
   border-radius: 50%;
+  height: 6em;
+  width: 6em;
 }
 
 .buttonSeeBand {

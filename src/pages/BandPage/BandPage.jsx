@@ -153,8 +153,6 @@ export const BandPage = () => {
     const createMultitracK = async () => {
         try {
             const body = multitrackBody;
-            // "project_title": "El cassette desde React III",
-            // "img_url": "https://media.istockphoto.com/id/1328430843/vector/girls-band.jpg?s=612x612&w=0&k=20&c=Od2--mSNnlvFsE4meO-fxNUMjvIzy4b5s4tb6ZDL_Rk="
             const response = await createMultitrackCall(id, body, token);
             setMultitrack(response.data.data);
             setMultiExist(true);
@@ -274,7 +272,7 @@ export const BandPage = () => {
                                             <div className="loadTrackCont">You must be logued as band leader to create a multitrack
                                             </div>
                                         ) : (
-                                            <div className="fieldComp">
+                                            <div className="fieldCompBands">
                                                 <FieldInput2
                                                     design={'inputReg'}
                                                     type={"project_title"}

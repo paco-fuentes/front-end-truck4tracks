@@ -108,6 +108,25 @@
   cursor: pointer;
 }
 
+.fieldCompBands{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--yellow-col);
+  color: white;
+  width: 24em;
+  height: 24em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-align: left;
+  border-style: solid;
+  border-color: rgb(0, 0, 0);
+  border-width: 0.2;
+  border-radius: 0.7em;
+  box-shadow: var(--calid-dark-col) 0.8em 1.1em 0em 0em;
+}
+
 .multiLoadCont {
   display: flex;
   justify-content: center;
