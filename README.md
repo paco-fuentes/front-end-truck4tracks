@@ -23,5 +23,5 @@ Front-end MVP for a Social Platform Focused on Sharing Sounds and Facilitating C
 
 ## Deploy 🚀
 <div align="center">
-    <a href="https://www.google.com"><strong>Url deployment coming soon... </strong></a>🚀🚀🚀
+    <a href="https://www.google.com"><strong>https://despliegue.dkttbnrz8nnws.amplifyapp.com/</strong></a>🚀🚀🚀
 </div>
