@@ -1,12 +1,12 @@
 # truck4tracks
 #### by Paco Fuentes
 
-<img src="./public/img_readme/prelogo-1.png" align= "center"/>
+<img style="border-radius:0.7em" src="./public/img_readme/prelogo-1.png" align= "center"/>
 
 ---
 
 <details>
-  <summary>Contenido 📝</summary>
+  <summary>Content 📝</summary>
   <ol>
     <li><a href="#objetivo-🎯">Objetivo</a></li>
     <li><a href="#sobre-el-proyecto-🔎">Sobre el proyecto</a></li>
@@ -112,55 +112,85 @@ Open terminal on project folder:
 
  ### Guest:
 
- / : home, main view
+ /home : main view
 
- <a href="">
-    <img src= "./public/img_readme/home.png"/>
+ <a  href="">
+    <img style="border-radius:0.5em" src= "./public/img_readme/home.png"/>
 </a>
 
  /register : user register view
 
  <a href="">
-    <img src= "./public/img_readme/register.png"/>
+    <img style="border-radius:0.5em" src= "./public/img_readme/register.png"/>
 </a>
 
-/login : login registered users and staff, wokers and admin
+/ login : login registered users and admin
 
 <a href="">
-    <img src= "./public/img_readme/login.png"/>
+    <img style="border-radius:0.5em" src= "./public/img_readme/login.png"/>
+</a>
+
+/register and login overview
+
+ <a href="">
+    <img style="border-radius:0.5em" src= "./public/gifs_readme/reg-log.gif"/>
 </a>
 
 /bands : select band view
 
 <a href="">
-    <img src= "./public/img_readme/bands.png"/>
+    <img style="border-radius:0.5em" src= "./public/img_readme/bands.png"/>
 </a>
 
 /band/id : select band view (detail)
 
 <a href="">
-    <img src= "./public/img_readme/band-1.png"/>
+    <img style="border-radius:0.5em" src= "./public/img_readme/band-1.png"/>
 </a>
 
 /band/id : select band view (detail)
 
 <a href="">
-    <img src= "./public/img_readme/band-2.png"/>
+    <img style="border-radius:0.5em" src= "./public/img_readme/band-2.png"/>
 </a>
 
 
 ### User
 
+ / main : user overview
+
+ <a href="">
+    <img style="border-radius:0.5em" src= "./public/gifs_readme/overview.gif"/>
+</a>
+
 /profile : profile view (detail)
 
 <a href="">
-    <img src= "./public/img_readme/profile.png"/>
+    <img style="border-radius:0.5em" src= "./public/img_readme/profile.png"/>
+</a>
+
+/profile : edit profile and create a new band
+
+<a href="">
+    <img style="border-radius:0.5em" src= "./public/gifs_readme/profile-2.gif"/>
 </a>
 
 /bandmembers : manage band
 
 <a href="">
-    <img src= "./public/img_readme/members.png"/>
+    <img style="border-radius:0.5em" src= "./public/img_readme/members.png"/>
+</a>
+
+/band : chat
+
+<a href="">
+    <img style="border-radius:0.5em" src= "./public/gifs_readme/chat.gif"/>
+</a>
+
+/band : sharing a track with your band
+
+<a href="">
+    <img style="border-radius:0.5em" src= "./public/gifs_readme/upload-2.gif"/>
 </a>
 
 ### Admin
@@ -168,7 +198,13 @@ Open terminal on project folder:
 /admin : get all users and delete selected user
 
 <a href="">
-    <img src= "./public/img_readme/admin.png"/>
+    <img style="border-radius:0.5em" src= "./public/img_readme/admin.png"/>
+</a>
+
+/admin : overview
+
+<a href="">
+    <img style="border-radius:0.5em" src= "./public/gifs_readme/admin.gif"/>
 </a>
 
 ---
@@ -180,7 +216,7 @@ In the future, users will have the ability to search for each other based on sty
 Next additions:
 
 - Redux
-- React bootstrap
+- Tailwind
 
 ---
 
